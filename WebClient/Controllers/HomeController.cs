@@ -16,7 +16,7 @@ namespace WebClient.Controllers
             {
                 products = productServiceProxy.GetAllProducts();
             }
-                return View(products);
+            return View(products);
         }
 
         public ActionResult About()
