@@ -19,7 +19,11 @@
                     <h3>@Html.DisplayFor(productName => product.Name)</h3>
                     <p class="card-text">@Html.DisplayFor(productDescription => product.Description)</p>
                     <h4 id="priceh4">@Html.DisplayFor(productPrice => product.Price),-</h4>
-                    <div id="divBuy"><button type="button" class="btn btn-lg btn btn-success">Køb</button></div>
+
+                    @using (Html.BeginForm("Add", "ShoppingCart", product))
+                    {
+                        <button type="submit" class="btn btn-lg btn btn-success" id="btnBuy">Køb</button>
+                    }
                 </div>
             </div>
         </div>

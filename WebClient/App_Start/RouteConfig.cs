@@ -21,9 +21,15 @@ namespace WebClient
 
 
             routes.MapRoute(
-                name: "ShoppingCart",
+                name: "Order",
                 url: "ShoppingCart/{action}/{id}",
-                defaults: new { controller = "ShoppingCart", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "ShoppingCart", action = "Order", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Add",
+                url: "ShoppingCart/{action}/{id}",
+                defaults: new { controller = "ShoppingCart", action = "Add", id = UrlParameter.Optional }
             );
         }
     }

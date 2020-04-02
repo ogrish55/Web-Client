@@ -28,7 +28,7 @@ textarea {
     float: left;
 }
 
-#divBuy {
+#btnBuy {
     float: right;
 }
 
@@ -50,10 +50,10 @@ textarea {
 
 #h1Jumbo {
     color: white;
-    text-shadow: -2px 0 black, 0 2px black, 1px 0 black, 0 -1px black;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .lead {
     color: white;
-    text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }

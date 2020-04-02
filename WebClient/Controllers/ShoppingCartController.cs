@@ -19,5 +19,31 @@ namespace WebshopClient.Controllers
             }
             return View(products);
         }
+
+        [HttpPost]
+        public ActionResult Add(Product product)
+        {
+            if (Session["shoppingCart"] == null)
+            {
+                List<Product> list = new List<Product>();
+
+                list.Add(product);
+                Session["shoppingCart"] = list;
+            }
+            else
+            {
+                List<Product> list = (List<Product>)Session["shoppingCart"];
+                list.Add(product);
+                Session["shoppingCart"] = list;
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Order()
+        {
+
+            return View((List<Product>)Session["shoppingCart"]);
+
+        }
     }
 }
