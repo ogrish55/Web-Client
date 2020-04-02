@@ -24,11 +24,12 @@ textarea {
 }
 
 #priceh4 {
-    padding-top: 10px;
+    padding-top: 5px;
+    float: left;
 }
 
 #divBuy {
-    padding-left: 260px;
+    float: right;
 }
 
 #divCard {
@@ -43,4 +44,3 @@ textarea {
 .card-text {
     height: 35px;
 }
-
