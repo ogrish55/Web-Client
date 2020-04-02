@@ -18,6 +18,13 @@ namespace WebClient
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+
+            routes.MapRoute(
+                name: "ShoppingCart",
+                url: "ShoppingCart/{action}/{id}",
+                defaults: new { controller = "ShoppingCart", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }
