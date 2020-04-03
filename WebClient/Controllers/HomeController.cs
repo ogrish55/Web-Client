@@ -11,7 +11,7 @@ namespace WebClient.Controllers
     {
         public ActionResult Index()
         {
-            IEnumerable<Product> products;
+            IEnumerable<ServiceProduct> products;
             using (ProductServiceClient productServiceProxy = new ProductServiceClient())
             {
                 products = productServiceProxy.GetAllProducts();

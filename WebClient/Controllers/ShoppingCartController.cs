@@ -9,12 +9,12 @@ namespace WebshopClient.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        List<Product> productList;
+        List<ServiceProduct> productList;
 
         // GET: ShoppingCart
         public ActionResult Index()
         {
-            IEnumerable<Product> products;
+            IEnumerable<ServiceProduct> products;
             using (ProductServiceClient productServiceProxy = new ProductServiceClient())
             {
                 products = productServiceProxy.GetAllProducts();
@@ -23,18 +23,18 @@ namespace WebshopClient.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Product product)
+        public ActionResult Add(ServiceProduct product)
         {
             if (Session["shoppingCart"] == null)
             {
-                productList = new List<Product>();
+                productList = new List<ServiceProduct>();
 
                 productList.Add(product);
                 Session["shoppingCart"] = productList;
             }
             else
             {
-                productList = (List<Product>)Session["shoppingCart"];
+                productList = (List<ServiceProduct>)Session["shoppingCart"];
                 productList.Add(product);
                 Session["shoppingCart"] = productList;
             }
@@ -43,7 +43,7 @@ namespace WebshopClient.Controllers
 
         public ActionResult Order()
         {
-            return View((List<Product>)Session["shoppingCart"]);
+            return View((List<ServiceProduct>)Session["shoppingCart"]);
 
         }
 
@@ -52,7 +52,7 @@ namespace WebshopClient.Controllers
 
             if (Session["shoppingCart"] == null)
             {
-                productList = new List<Product>();
+                productList = new List<ServiceProduct>();
 
                 for (int i = 0; i < productList.Count(); i++)
                 {
@@ -65,7 +65,7 @@ namespace WebshopClient.Controllers
             }
             else
             {
-                productList = (List<Product>)Session["shoppingCart"];
+                productList = (List<ServiceProduct>)Session["shoppingCart"];
 
                 for (int i = 0; i < productList.Count(); i++)
                 {

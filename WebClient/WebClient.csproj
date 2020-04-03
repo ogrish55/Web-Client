@@ -168,7 +168,7 @@
     <None Include="Connected Services\ProductServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Connected Services\ProductServiceReference\WebshopClient.ProductServiceReference.Product.datasource">
+    <Content Include="Connected Services\ProductServiceReference\WebshopClient.ProductServiceReference.ServiceProduct.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

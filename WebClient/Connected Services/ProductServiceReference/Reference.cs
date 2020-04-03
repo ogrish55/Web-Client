@@ -15,9 +15,9 @@ namespace WebshopClient.ProductServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Product", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceProduct", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
     [System.SerializableAttribute()]
-    public partial class Product : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ServiceProduct : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -111,10 +111,10 @@ namespace WebshopClient.ProductServiceReference {
     public interface IProductService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/InsertProduct", ReplyAction="http://tempuri.org/IProductService/InsertProductResponse")]
-        void InsertProduct(WebshopClient.ProductServiceReference.Product product);
+        void InsertProduct(WebshopClient.ProductServiceReference.ServiceProduct product);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/InsertProduct", ReplyAction="http://tempuri.org/IProductService/InsertProductResponse")]
-        System.Threading.Tasks.Task InsertProductAsync(WebshopClient.ProductServiceReference.Product product);
+        System.Threading.Tasks.Task InsertProductAsync(WebshopClient.ProductServiceReference.ServiceProduct product);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/DeleteProduct", ReplyAction="http://tempuri.org/IProductService/DeleteProductResponse")]
         void DeleteProduct(int productId);
@@ -123,22 +123,22 @@ namespace WebshopClient.ProductServiceReference {
         System.Threading.Tasks.Task DeleteProductAsync(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/UpdateProduct", ReplyAction="http://tempuri.org/IProductService/UpdateProductResponse")]
-        void UpdateProduct(WebshopClient.ProductServiceReference.Product product);
+        void UpdateProduct(WebshopClient.ProductServiceReference.ServiceProduct product);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/UpdateProduct", ReplyAction="http://tempuri.org/IProductService/UpdateProductResponse")]
-        System.Threading.Tasks.Task UpdateProductAsync(WebshopClient.ProductServiceReference.Product product);
+        System.Threading.Tasks.Task UpdateProductAsync(WebshopClient.ProductServiceReference.ServiceProduct product);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/GetProductById", ReplyAction="http://tempuri.org/IProductService/GetProductByIdResponse")]
-        WebshopClient.ProductServiceReference.Product GetProductById(int productId);
+        WebshopClient.ProductServiceReference.ServiceProduct GetProductById(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/GetProductById", ReplyAction="http://tempuri.org/IProductService/GetProductByIdResponse")]
-        System.Threading.Tasks.Task<WebshopClient.ProductServiceReference.Product> GetProductByIdAsync(int productId);
+        System.Threading.Tasks.Task<WebshopClient.ProductServiceReference.ServiceProduct> GetProductByIdAsync(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/GetAllProducts", ReplyAction="http://tempuri.org/IProductService/GetAllProductsResponse")]
-        WebshopClient.ProductServiceReference.Product[] GetAllProducts();
+        WebshopClient.ProductServiceReference.ServiceProduct[] GetAllProducts();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/GetAllProducts", ReplyAction="http://tempuri.org/IProductService/GetAllProductsResponse")]
-        System.Threading.Tasks.Task<WebshopClient.ProductServiceReference.Product[]> GetAllProductsAsync();
+        System.Threading.Tasks.Task<WebshopClient.ProductServiceReference.ServiceProduct[]> GetAllProductsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -168,11 +168,11 @@ namespace WebshopClient.ProductServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public void InsertProduct(WebshopClient.ProductServiceReference.Product product) {
+        public void InsertProduct(WebshopClient.ProductServiceReference.ServiceProduct product) {
             base.Channel.InsertProduct(product);
         }
         
-        public System.Threading.Tasks.Task InsertProductAsync(WebshopClient.ProductServiceReference.Product product) {
+        public System.Threading.Tasks.Task InsertProductAsync(WebshopClient.ProductServiceReference.ServiceProduct product) {
             return base.Channel.InsertProductAsync(product);
         }
         
@@ -184,27 +184,27 @@ namespace WebshopClient.ProductServiceReference {
             return base.Channel.DeleteProductAsync(productId);
         }
         
-        public void UpdateProduct(WebshopClient.ProductServiceReference.Product product) {
+        public void UpdateProduct(WebshopClient.ProductServiceReference.ServiceProduct product) {
             base.Channel.UpdateProduct(product);
         }
         
-        public System.Threading.Tasks.Task UpdateProductAsync(WebshopClient.ProductServiceReference.Product product) {
+        public System.Threading.Tasks.Task UpdateProductAsync(WebshopClient.ProductServiceReference.ServiceProduct product) {
             return base.Channel.UpdateProductAsync(product);
         }
         
-        public WebshopClient.ProductServiceReference.Product GetProductById(int productId) {
+        public WebshopClient.ProductServiceReference.ServiceProduct GetProductById(int productId) {
             return base.Channel.GetProductById(productId);
         }
         
-        public System.Threading.Tasks.Task<WebshopClient.ProductServiceReference.Product> GetProductByIdAsync(int productId) {
+        public System.Threading.Tasks.Task<WebshopClient.ProductServiceReference.ServiceProduct> GetProductByIdAsync(int productId) {
             return base.Channel.GetProductByIdAsync(productId);
         }
         
-        public WebshopClient.ProductServiceReference.Product[] GetAllProducts() {
+        public WebshopClient.ProductServiceReference.ServiceProduct[] GetAllProducts() {
             return base.Channel.GetAllProducts();
         }
         
-        public System.Threading.Tasks.Task<WebshopClient.ProductServiceReference.Product[]> GetAllProductsAsync() {
+        public System.Threading.Tasks.Task<WebshopClient.ProductServiceReference.ServiceProduct[]> GetAllProductsAsync() {
             return base.Channel.GetAllProductsAsync();
         }
     }
