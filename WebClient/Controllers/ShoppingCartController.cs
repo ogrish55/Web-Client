@@ -49,44 +49,27 @@ namespace WebshopClient.Controllers
 
         public ActionResult Delete(int id)
         {
+            productList = (List<ServiceProduct>)Session["shoppingCart"];
 
-            if (Session["shoppingCart"] == null)
-            {
-                productList = new List<ServiceProduct>();
+            bool found = false;
+            int i = 0;
 
-                for (int i = 0; i < productList.Count(); i++)
-                {
-                    if (productList[i].ProductId == id)
-                    {
-                        productList.Remove(productList[i]);
-                    }
-                }
-                Session["shoppingCart"] = productList;
-            }
-            else
-            {
-                productList = (List<ServiceProduct>)Session["shoppingCart"];
-
-                for (int i = 0; i < productList.Count(); i++)
-                {
-                    if (productList[i].ProductId == id)
-                    {
-                        productList.Remove(productList[i]);
-                    }
-                }
-                Session["shoppingCart"] = productList;
-            }
-
-            for (int i = 0; i < productList.Count(); i++)
+            while (!found)
             {
                 if (productList[i].ProductId == id)
                 {
                     productList.Remove(productList[i]);
+                    found = true;
                 }
+
+                i++;
             }
+
+            Session["shoppingCart"] = productList;
 
             return RedirectToAction("Order");
         }
     }
 }
+
 
