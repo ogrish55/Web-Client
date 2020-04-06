@@ -44,7 +44,6 @@ namespace WebshopClient.Controllers
         public ActionResult Order()
         {
             return View((List<ServiceProduct>)Session["shoppingCart"]);
-
         }
 
         public ActionResult Delete(int id)
