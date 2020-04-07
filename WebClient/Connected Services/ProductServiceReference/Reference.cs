@@ -23,6 +23,9 @@ namespace WebshopClient.ProductServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AmountOnStockField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -41,6 +44,19 @@ namespace WebshopClient.ProductServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AmountOnStock {
+            get {
+                return this.AmountOnStockField;
+            }
+            set {
+                if ((this.AmountOnStockField.Equals(value) != true)) {
+                    this.AmountOnStockField = value;
+                    this.RaisePropertyChanged("AmountOnStock");
+                }
             }
         }
         
