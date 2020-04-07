@@ -156,6 +156,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\backgroundimg.jpg" />
+    <Content Include="Images\GreenCircle.png" />
+    <Content Include="Images\RedCircle.png" />
+    <Content Include="Images\YellowCircle.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Connected Services\ProductServiceReference\Service.Model.xsd">
