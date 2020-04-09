@@ -4,10 +4,20 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Amount" type="xs:int" />
       <xs:element minOccurs="0" name="OrderId" type="xs:int" />
-      <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+      <xs:element minOccurs="0" name="Product" nillable="true" type="tns:ServiceProduct" />
       <xs:element minOccurs="0" name="ProductLineId" type="xs:int" />
-      <xs:element minOccurs="0" name="SubTotal" type="xs:int" />
+      <xs:element minOccurs="0" name="SubTotal" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ServiceProductLine" nillable="true" type="tns:ServiceProductLine" />
+  <xs:complexType name="ServiceProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AmountOnStock" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceProduct" nillable="true" type="tns:ServiceProduct" />
 </xs:schema>

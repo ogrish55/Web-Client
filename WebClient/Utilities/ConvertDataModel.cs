@@ -5,7 +5,6 @@ using System.Web;
 using WebshopClient.CustomerServiceReference;
 using WebshopClient.Model;
 using WebshopClient.OrderServiceReference;
-using WebshopClient.ProductLineServiceReference;
 using WebshopClient.ProductServiceReference;
 
 namespace WebshopClient.Utilities
@@ -34,30 +33,6 @@ namespace WebshopClient.Utilities
             productToReturn.AmountOnStock = webshopProduct.AmountOnStock;
 
             return productToReturn;
-        }
-
-        public ProductLine ConvertFromServiceProductLine(ServiceProductLine serviceProductLine)
-        {
-            ProductLine productLineToReturn = new ProductLine();
-            productLineToReturn.ProductLineId = serviceProductLine.ProductLineId;
-            productLineToReturn.Amount = serviceProductLine.Amount;
-            productLineToReturn.SubTotal = serviceProductLine.SubTotal;
-            productLineToReturn.OrderId = serviceProductLine.OrderId;
-            productLineToReturn.ProductId = serviceProductLine.ProductId;
-
-            return productLineToReturn;
-        }
-
-        public ServiceProductLine ConvertToServiceProductLine(ProductLine webshopProductLine)
-        {
-            ServiceProductLine productLineToReturn = new ServiceProductLine();
-            productLineToReturn.ProductLineId = webshopProductLine.ProductLineId;
-            productLineToReturn.Amount = webshopProductLine.Amount;
-            productLineToReturn.SubTotal = webshopProductLine.SubTotal;
-            productLineToReturn.OrderId = webshopProductLine.OrderId;
-            productLineToReturn.ProductId = webshopProductLine.ProductId;
-
-            return productLineToReturn;
         }
 
         public Order ConvertFromServiceOrder(ServiceCustomerOrder serviceOrder)

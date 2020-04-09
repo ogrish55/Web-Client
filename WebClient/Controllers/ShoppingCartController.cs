@@ -3,72 +3,100 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebshopClient.Model;
 using WebshopClient.ProductServiceReference;
 
 namespace WebshopClient.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        List<ServiceProduct> productList;
-
-        // GET: ShoppingCart
-        public ActionResult Index()
-        {
-            IEnumerable<ServiceProduct> products;
-            using (ProductServiceClient productServiceProxy = new ProductServiceClient())
-            {
-                products = productServiceProxy.GetAllProducts();
-            }
-            return View(products);
-        }
+        List<ProductLine> productLineList;
 
         [HttpPost]
-        public ActionResult Add(ServiceProduct product)
+        public ActionResult Add(Product product)
         {
             if (Session["shoppingCart"] == null)
             {
-                productList = new List<ServiceProduct>();
+                productLineList = new List<ProductLine>();
 
-                productList.Add(product);
-                Session["shoppingCart"] = productList;
+                ProductLine productLine = new ProductLine();
+                productLine.Amount = 1;
+                productLine.SubTotal = product.Price;
+                productLine.Product = product;
+                productLineList.Add(productLine);
+
+                Session["shoppingCart"] = productLineList;
             }
             else
             {
-                productList = (List<ServiceProduct>)Session["shoppingCart"];
-                productList.Add(product);
-                Session["shoppingCart"] = productList;
+                productLineList = (List<ProductLine>)Session["shoppingCart"];
+
+                bool found = false;
+
+                foreach (ProductLine productLine in productLineList)
+                {
+                    if (productLine.Product.ProductId == product.ProductId)
+                    {
+                        productLine.Amount = productLine.Amount + 1;
+                        productLine.SubTotal = productLine.SubTotal * productLine.Amount;
+                        found = true;
+                    }
+                }
+
+                if (productLineList.Count() == 0 || !found)
+                {
+                    ProductLine productLine = new ProductLine();
+                    productLine.Amount = 1;
+                    productLine.SubTotal = product.Price;
+                    productLine.Product = product;
+                    productLineList.Add(productLine);
+                }
+
+                Session["shoppingCart"] = productLineList;
             }
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Order()
         {
-            return View((List<ServiceProduct>)Session["shoppingCart"]);
+            return View((List<ProductLine>)Session["shoppingCart"]);
         }
 
         public ActionResult Delete(int id)
         {
-            productList = (List<ServiceProduct>)Session["shoppingCart"];
+            productLineList = (List<ProductLine>)Session["shoppingCart"];
+
 
             bool found = false;
             int i = 0;
 
             while (!found)
             {
-                if (productList[i].ProductId == id)
+                if (productLineList[i].Product.ProductId == id)
                 {
-                    productList.Remove(productList[i]);
+                    productLineList.Remove(productLineList[i]);
                     found = true;
                 }
 
                 i++;
             }
 
-            Session["shoppingCart"] = productList;
+
+            Session["shoppingCart"] = productLineList;
 
             return RedirectToAction("Order");
         }
+
+        public ActionResult EmptyShoppingCart()
+        {
+            Session["shoppingCart"] = null;
+            return RedirectToAction("Order", "ShoppingCart");
+        }
+
+        public ActionResult CheckOut()
+        {
+            return View((List<ProductLine>)Session["shoppingCart"]);
+        }
     }
 }
-
 
