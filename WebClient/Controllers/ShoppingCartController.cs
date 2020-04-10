@@ -97,6 +97,63 @@ namespace WebshopClient.Controllers
         {
             return View((List<ProductLine>)Session["shoppingCart"]);
         }
+
+        public ActionResult IncreaseAmount(int id)
+        {
+            productLineList = (List<ProductLine>)Session["shoppingCart"];
+
+            bool found = false;
+            int i = 0;
+
+            while (!found)
+            {
+                if (productLineList[i].Product.ProductId == id)
+                {
+                    found = true;
+                    productLineList[i].Amount += 1;
+                }
+                if (!found)
+                {
+                    i++;
+                }
+            }
+
+            Session["shoppingCart"] = productLineList;
+            return RedirectToAction("Order");
+        }
+
+        public ActionResult DecreaseAmount(int id)
+        {
+            productLineList = (List<ProductLine>)Session["shoppingCart"];
+
+            bool found = false;
+            int i = 0;
+            ProductLine foundProductLine = null;
+
+            while (!found)
+            {
+                if (productLineList[i].Product.ProductId == id)
+                {
+                    found = true;
+                    productLineList[i].Amount -= 1;
+                    foundProductLine = productLineList[i];
+                }
+                if (!found)
+                {
+                    i++;
+                }
+            }
+
+            if (foundProductLine.Amount == 0)
+            {
+                productLineList.Remove(foundProductLine);
+            }
+
+            Session["shoppingCart"] = productLineList;
+            return RedirectToAction("Order");
+        }
+
+
     }
 }
 

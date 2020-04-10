@@ -18,7 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44360</IISExpressSSLPort>
+    <IISExpressSSLPort>44390</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -231,6 +231,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\backgroundimg.jpg" />
     <Content Include="Images\GreenCircle.png" />
+    <Content Include="Images\Minus.png" />
+    <Content Include="Images\Plus.png" />
     <Content Include="Images\RedCircle.png" />
     <Content Include="Images\YellowCircle.png" />
     <Content Include="Scripts\bootstrap.js" />
