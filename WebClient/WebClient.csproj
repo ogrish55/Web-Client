@@ -133,6 +133,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\DeliveryDescriptionServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\OrderServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -154,12 +159,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\DeliveryDescription.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ConvertDataModel.cs" />
+    <Compile Include="Utilities\ConvertDeliveryDescription.cs" />
     <Compile Include="Utilities\ConvertProductLine.cs" />
+    <Compile Include="Utilities\IConvertDeliveryDescription.cs" />
     <Compile Include="Utilities\IConvertModel.cs" />
     <Compile Include="Utilities\IConvertProductLine.cs" />
   </ItemGroup>
@@ -174,6 +182,19 @@
     <None Include="Connected Services\CustomerServiceReference\Service2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\DeliveryDescriptionServiceReference\DeliveryDescriptionService.wsdl" />
+    <None Include="Connected Services\DeliveryDescriptionServiceReference\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DeliveryDescriptionServiceReference\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DeliveryDescriptionServiceReference\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Connected Services\DeliveryDescriptionServiceReference\WebshopClient.DeliveryDescriptionServiceReference.ServiceDeliveryDescription.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\OrderServiceReference\CustomerOrderService.wsdl" />
     <None Include="Connected Services\OrderServiceReference\Service.xsd">
       <SubType>Designer</SubType>
@@ -218,6 +239,13 @@
     <None Include="Connected Services\CustomerServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\CustomerServiceReference\configuration.svcinfo" />
     <None Include="Connected Services\CustomerServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\DeliveryDescriptionServiceReference\Service.disco" />
+    <None Include="Connected Services\DeliveryDescriptionServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\DeliveryDescriptionServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\DeliveryDescriptionServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -298,6 +326,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CustomerServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\DeliveryDescriptionServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\OrderServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\ProductLineServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\ProductServiceReference\" />
