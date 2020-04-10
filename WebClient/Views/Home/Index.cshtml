@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebshopClient.ProductServiceReference.ServiceProduct>
+﻿@model IEnumerable<WebshopClient.Model.Product>
 
 @{
     ViewBag.Title = "Index";
@@ -20,11 +20,11 @@
                     <p class="card-text">@Html.DisplayFor(productDescription => product.Description)</p>
                     @if (product.AmountOnStock > 0)
                     {
-                        <p class="card-text"><img src="~/Images/GreenCircle.png" alt="Green circle" width="20" height="20"/> @Html.DisplayFor(productAmount => product.AmountOnStock)+stk. på lager (leveringstid 1-2 arbejdsdage)</p>
+                        <p class="card-text"><img src="~/Images/GreenCircle.png" alt="Green circle" width="20" height="20" /> @Html.DisplayFor(productAmount => product.AmountOnStock)+stk. på lager (leveringstid 1-2 arbejdsdage)</p>
                     }
                     else if (product.AmountOnStock == 0)
                     {
-                        <p class="card-text"><img src="~/Images/YellowCircle.png" alt="Yelloy circle" width="20" height="20"/>@Html.DisplayName(" Ikke på lager")</p>
+                        <p class="card-text"><img src="~/Images/YellowCircle.png" alt="Yelloy circle" width="20" height="20" />@Html.DisplayName(" Ikke på lager")</p>
                     }
                     <h4 id="priceh4">@Html.DisplayFor(productPrice => product.Price)</h4>
 

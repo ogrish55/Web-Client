@@ -159,7 +159,9 @@
     <Compile Include="Model\ProductLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ConvertDataModel.cs" />
+    <Compile Include="Utilities\ConvertProductLine.cs" />
     <Compile Include="Utilities\IConvertModel.cs" />
+    <Compile Include="Utilities\IConvertProductLine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\CustomerServiceReference\CustomerService.wsdl" />
@@ -270,9 +272,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutIndex.cshtml" />
     <Content Include="Views\ShoppingCart\Order.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<WebshopClient.ProductServiceReference.ServiceProduct>
+@model IEnumerable<WebshopClient.Model.ProductLine>
 
 @{
     ViewBag.Title = "Order";
@@ -13,14 +13,18 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Product.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Product.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.SubTotal)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+
             <th></th>
         </tr>
 
@@ -28,22 +32,33 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @Html.DisplayFor(modelItem => item.Product.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Product.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.SubTotal)
                 </td>
                 <td>
-                    @Html.ActionLink("Slet", "Delete", new { id = item.ProductId })
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.ActionLink("Slet", "Delete", new { id = item.Product.ProductId })
                 </td>
             </tr>
         }
 
     </table>
+
+    <button type="button" class="btn btn-lg pull-right btn-success" onclick="location.href='@Url.Action("CheckOut", "ShoppingCart", new { model = Model })'">Gå til betaling!</button>
+    <button type="button" id="buyMore" class="btn btn-lg pull-right btn-secondary" onclick="location.href='@Url.Action("Index", "Home")'">Køb mere</button>
+
+    <button type="button" class="btn btn-md btn-warning" onclick="location.href='@Url.Action("EmptyShoppingCart", "ShoppingCart")'">Tøm indkøbskurv</button>
+
+
 }
-else { 
+else
+{
     <small>Indkøbskurv er tom!</small>
 }
