@@ -60,3 +60,8 @@ textarea {
 #buyMore {
     margin-right: 10px !important;
 }
+
+#rowProducts {
+    display: flex;
+    flex-wrap: wrap;
+}
