@@ -5,7 +5,7 @@ using System.Web;
 using WebshopClient.CustomerServiceReference;
 using WebshopClient.Model;
 using WebshopClient.OrderServiceReference;
-using WebshopClient.ProductServiceReference;
+using WebshopClient.ProductLineServiceReference;
 
 namespace WebshopClient.Utilities
 {

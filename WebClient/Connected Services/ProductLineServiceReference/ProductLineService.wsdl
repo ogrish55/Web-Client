@@ -25,6 +25,36 @@
   <wsdl:message name="IProductLineService_UpdateProductLine_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateProductLineResponse" />
   </wsdl:message>
+  <wsdl:message name="IProductLineService_InsertProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProduct" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_InsertProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_DeleteProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProduct" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_DeleteProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_UpdateProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProduct" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_UpdateProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_GetProductById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductById" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_GetProductById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_GetAllProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProducts" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_GetAllProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProductsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IProductLineService">
     <wsdl:operation name="DeleteProductLine">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductLineService/DeleteProductLine" message="tns:IProductLineService_DeleteProductLine_InputMessage" />
@@ -37,6 +67,26 @@
     <wsdl:operation name="UpdateProductLine">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductLineService/UpdateProductLine" message="tns:IProductLineService_UpdateProductLine_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProductLineService/UpdateProductLineResponse" message="tns:IProductLineService_UpdateProductLine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductLineService/InsertProduct" message="tns:IProductLineService_InsertProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductLineService/InsertProductResponse" message="tns:IProductLineService_InsertProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductLineService/DeleteProduct" message="tns:IProductLineService_DeleteProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductLineService/DeleteProductResponse" message="tns:IProductLineService_DeleteProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductLineService/UpdateProduct" message="tns:IProductLineService_UpdateProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductLineService/UpdateProductResponse" message="tns:IProductLineService_UpdateProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductLineService/GetProductById" message="tns:IProductLineService_GetProductById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductLineService/GetProductByIdResponse" message="tns:IProductLineService_GetProductById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductLineService/GetAllProducts" message="tns:IProductLineService_GetAllProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductLineService/GetAllProductsResponse" message="tns:IProductLineService_GetAllProducts_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IProductLineService" type="tns:IProductLineService">
@@ -61,6 +111,51 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateProductLine">
       <soap:operation soapAction="http://tempuri.org/IProductLineService/UpdateProductLine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertProduct">
+      <soap:operation soapAction="http://tempuri.org/IProductLineService/InsertProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProduct">
+      <soap:operation soapAction="http://tempuri.org/IProductLineService/DeleteProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProduct">
+      <soap:operation soapAction="http://tempuri.org/IProductLineService/UpdateProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <soap:operation soapAction="http://tempuri.org/IProductLineService/GetProductById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProducts">
+      <soap:operation soapAction="http://tempuri.org/IProductLineService/GetAllProducts" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
