@@ -133,22 +133,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\DeliveryDescriptionServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Connected Services\OrderServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\ProductLineServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\ProductServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -182,19 +172,6 @@
     <None Include="Connected Services\CustomerServiceReference\Service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DeliveryDescriptionServiceReference\DeliveryDescriptionService.wsdl" />
-    <None Include="Connected Services\DeliveryDescriptionServiceReference\Service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\DeliveryDescriptionServiceReference\Service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\DeliveryDescriptionServiceReference\Service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Connected Services\DeliveryDescriptionServiceReference\WebshopClient.DeliveryDescriptionServiceReference.ServiceDeliveryDescription.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\OrderServiceReference\CustomerOrderService.wsdl" />
     <None Include="Connected Services\OrderServiceReference\Service.xsd">
       <SubType>Designer</SubType>
@@ -205,6 +182,12 @@
     <None Include="Connected Services\OrderServiceReference\Service2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Connected Services\OrderServiceReference\WebshopClient.OrderServiceReference.ServiceCustomerOrder.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\OrderServiceReference\WebshopClient.OrderServiceReference.ServiceDeliveryDescription.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\ProductLineServiceReference\ProductLineService.wsdl" />
     <None Include="Connected Services\ProductLineServiceReference\Service.xsd">
       <SubType>Designer</SubType>
@@ -214,12 +197,6 @@
     </None>
     <None Include="Connected Services\ProductLineServiceReference\Service2.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ProductServiceReference\configuration91.svcinfo" />
-    <None Include="Connected Services\ProductServiceReference\configuration.svcinfo" />
-    <None Include="Connected Services\ProductServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Connected Services\ProductLineServiceReference\Service.disco" />
     <None Include="Connected Services\ProductLineServiceReference\configuration91.svcinfo" />
@@ -242,13 +219,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\DeliveryDescriptionServiceReference\Service.disco" />
-    <None Include="Connected Services\DeliveryDescriptionServiceReference\configuration91.svcinfo" />
-    <None Include="Connected Services\DeliveryDescriptionServiceReference\configuration.svcinfo" />
-    <None Include="Connected Services\DeliveryDescriptionServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -263,17 +233,7 @@
     <Content Include="Images\YellowCircle.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Connected Services\ProductServiceReference\Service.Model.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ProductServiceReference\service.wsdl" />
-    <None Include="Connected Services\ProductServiceReference\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ProductServiceReference\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Connected Services\ProductServiceReference\WebshopClient.ProductServiceReference.ServiceProduct.datasource">
+    <Content Include="Connected Services\ProductLineServiceReference\WebshopClient.ProductLineServiceReference.ServiceProduct.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -326,10 +286,8 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CustomerServiceReference\" />
-    <WCFMetadataStorage Include="Connected Services\DeliveryDescriptionServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\OrderServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\ProductLineServiceReference\" />
-    <WCFMetadataStorage Include="Connected Services\ProductServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

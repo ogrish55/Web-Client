@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using WebshopClient.CustomerServiceReference;
 using WebshopClient.Model;
 using WebshopClient.OrderServiceReference;
-using WebshopClient.ProductServiceReference;
+using WebshopClient.ProductLineServiceReference;
 
 namespace WebshopClient.Utilities
 {
     interface IConvertModel
     {
-        Product ConvertFromServiceProduct(ProductServiceReference.ServiceProduct serviceProduct);
+        Product ConvertFromServiceProduct(ServiceProduct serviceProduct);
         ServiceProduct ConvertToServiceProduct(Product webshopProduct);
         Order ConvertFromServiceOrder(ServiceCustomerOrder serviceOrder);
         ServiceCustomerOrder ConvertToServiceCustomerOrder(Order webshopOrder);

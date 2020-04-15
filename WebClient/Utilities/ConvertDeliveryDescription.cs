@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WebshopClient.DeliveryDescriptionServiceReference;
+using WebshopClient.OrderServiceReference;
 using WebshopClient.Model;
 
 namespace WebshopClient.Utilities
