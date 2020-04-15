@@ -10,14 +10,14 @@ namespace WebshopClient.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        List<ProductLine> productLineList;
+        List<ProductLine> productLineList = new List<ProductLine>();
 
         [HttpPost]
         public ActionResult Add(Product product)
         {
             if (Session["shoppingCart"] == null)
             {
-                productLineList = new List<ProductLine>();
+               // productLineList = new List<ProductLine>();
 
                 ProductLine productLine = new ProductLine();
                 productLine.Amount = 1;

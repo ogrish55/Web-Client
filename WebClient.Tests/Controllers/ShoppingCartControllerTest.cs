@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebshopClient.Controllers;
 using WebshopClient.Model;
+using System.Web;
+using Moq;
+using System.Web.Mvc;
 
 namespace WebClient.Tests.Controllers
 {
@@ -46,7 +49,13 @@ namespace WebClient.Tests.Controllers
         public void TestAddAmountOnProductLine()
         {
             // Arrange
+            var context = new Mock<ControllerContext>();
+            var session = new MockHttpSession();
+
+            context.Setup(m => m.HttpContext.Session).Returns(session);
+
             ShoppingCartController cartController = new ShoppingCartController();
+            cartController.ControllerContext = context.Object;
 
             Product product = new Product();
             product.ProductId = 1;
