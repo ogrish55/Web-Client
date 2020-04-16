@@ -18,7 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44360</IISExpressSSLPort>
+    <IISExpressSSLPort>44390</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -148,6 +148,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\MockHttpSession.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\DeliveryDescription.cs" />
     <Compile Include="Model\Order.cs" />
@@ -233,6 +234,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\backgroundimg.jpg" />
     <Content Include="Images\GreenCircle.png" />
+    <Content Include="Images\Minus.png" />
+    <Content Include="Images\Plus.png" />
     <Content Include="Images\RedCircle.png" />
     <Content Include="Images\YellowCircle.png" />
     <Content Include="Scripts\bootstrap.js" />
