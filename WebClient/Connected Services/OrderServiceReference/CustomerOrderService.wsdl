@@ -91,6 +91,12 @@
   <wsdl:message name="ICustomerOrderService_GetDiscountByCode_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDiscountByCodeResponse" />
   </wsdl:message>
+  <wsdl:message name="ICustomerOrderService_GetPaymentMethods_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentMethods" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerOrderService_GetPaymentMethods_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentMethodsResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICustomerOrderService">
     <wsdl:operation name="DeleteOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderService/DeleteOrder" message="tns:ICustomerOrderService_DeleteOrder_InputMessage" />
@@ -147,6 +153,10 @@
     <wsdl:operation name="GetDiscountByCode">
       <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderService/GetDiscountByCode" message="tns:ICustomerOrderService_GetDiscountByCode_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICustomerOrderService/GetDiscountByCodeResponse" message="tns:ICustomerOrderService_GetDiscountByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentMethods">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderService/GetPaymentMethods" message="tns:ICustomerOrderService_GetPaymentMethods_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerOrderService/GetPaymentMethodsResponse" message="tns:ICustomerOrderService_GetPaymentMethods_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICustomerOrderService" type="tns:ICustomerOrderService">
@@ -270,6 +280,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDiscountByCode">
       <soap:operation soapAction="http://tempuri.org/ICustomerOrderService/GetDiscountByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentMethods">
+      <soap:operation soapAction="http://tempuri.org/ICustomerOrderService/GetPaymentMethods" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

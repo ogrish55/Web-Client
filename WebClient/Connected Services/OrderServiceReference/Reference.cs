@@ -356,6 +356,67 @@ namespace WebshopClient.OrderServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServicePaymentMethod", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class ServicePaymentMethod : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PMethodIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PaymentMethodValueField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PMethodId {
+            get {
+                return this.PMethodIdField;
+            }
+            set {
+                if ((this.PMethodIdField.Equals(value) != true)) {
+                    this.PMethodIdField = value;
+                    this.RaisePropertyChanged("PMethodId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PaymentMethodValue {
+            get {
+                return this.PaymentMethodValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PaymentMethodValueField, value) != true)) {
+                    this.PaymentMethodValueField = value;
+                    this.RaisePropertyChanged("PaymentMethodValue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="OrderServiceReference.ICustomerOrderService")]
     public interface ICustomerOrderService {
@@ -443,6 +504,12 @@ namespace WebshopClient.OrderServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetDiscountByCode", ReplyAction="http://tempuri.org/ICustomerOrderService/GetDiscountByCodeResponse")]
         System.Threading.Tasks.Task<int> GetDiscountByCodeAsync(string code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetPaymentMethods", ReplyAction="http://tempuri.org/ICustomerOrderService/GetPaymentMethodsResponse")]
+        WebshopClient.OrderServiceReference.ServicePaymentMethod[] GetPaymentMethods();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetPaymentMethods", ReplyAction="http://tempuri.org/ICustomerOrderService/GetPaymentMethodsResponse")]
+        System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServicePaymentMethod[]> GetPaymentMethodsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -582,6 +649,14 @@ namespace WebshopClient.OrderServiceReference {
         
         public System.Threading.Tasks.Task<int> GetDiscountByCodeAsync(string code) {
             return base.Channel.GetDiscountByCodeAsync(code);
+        }
+        
+        public WebshopClient.OrderServiceReference.ServicePaymentMethod[] GetPaymentMethods() {
+            return base.Channel.GetPaymentMethods();
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServicePaymentMethod[]> GetPaymentMethodsAsync() {
+            return base.Channel.GetPaymentMethodsAsync();
         }
     }
 }
