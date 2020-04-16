@@ -52,7 +52,7 @@ namespace WebClient.Tests.Controllers
             var context = new Mock<ControllerContext>();
             var session = new MockHttpSession();
 
-            context.Setup(m => m.HttpContext.Session).Returns(session);
+            List<ProductLine> productLineList = new List<ProductLine>();
 
             ShoppingCartController cartController = new ShoppingCartController();
             cartController.ControllerContext = context.Object;
@@ -62,17 +62,22 @@ namespace WebClient.Tests.Controllers
             product.Price = 100;
 
             ProductLine productLine = new ProductLine();
-            productLine.Amount = 1;
+            productLine.Amount = 0;
             productLine.Product = product;
 
-            int originalAmount = productLine.Amount;
+            productLineList.Add(productLine);
+
+            //var test = session["shoppingCart"];
+            session.insertIntoDictionary("shoppingCart", productLineList);
+
+            context.Setup(m => m.HttpContext.Session).Returns(session);
 
             // Act
             cartController.Add(product);
             cartController.IncreaseAmount(productLine.Product.ProductId);
 
             // Assert
-            Assert.AreEqual(originalAmount + 1, productLine.Amount);
+            Assert.AreEqual(2, productLine.Amount);
         }
     }
 }
