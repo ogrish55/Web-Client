@@ -11,7 +11,7 @@ namespace WebshopClient.Model
         public Customer Customer { get; set; }
         public Order Order { get; set; }
         public DeliveryDescription DeliveryDescription { get; set; }
-        //public PaymentMethod PaymentMethod { get; set; }
+        public List<PaymentMethod> PaymentMethods { get; set; }
 
 
     }

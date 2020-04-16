@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebshopClient.Model;
 using WebshopClient.ProductLineServiceReference;
+using WebshopClient.OrderServiceReference;
+using WebshopClient.Utilities;
 
 namespace WebshopClient.Controllers
 {
@@ -102,6 +104,15 @@ namespace WebshopClient.Controllers
             checkoutViewModel.DeliveryDescription = new DeliveryDescription();
             checkoutViewModel.Order = new Order();
             checkoutViewModel.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
+            using(CustomerOrderServiceClient proxy = new CustomerOrderServiceClient())
+            {
+                List<PaymentMethod> listToAdd = new List<PaymentMethod>();
+                foreach (var item in proxy.GetPaymentMethods())
+                {
+                    listToAdd.Add(new ConvertDataModel().ConvertFromServicePaymentMethodToClient(item));
+                }
+                checkoutViewModel.PaymentMethods = listToAdd;
+            }
             return View(checkoutViewModel);
         }
 
