@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebshopClient.Model.ProductLine>
+﻿@model WebshopClient.Model.CheckoutViewModel
 @{
     ViewBag.Title = "CheckOut";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -89,7 +89,7 @@
             <li class="list-group-item d-flex justify-content-between lh-condensed">
                 @if (Model != null)
                 {
-                    foreach (var item in Model)
+                    foreach (var item in Model.ShoppingCart)
                     {
                         <div>
                             <h4 class="my-0">@Html.DisplayFor(modelItem => item.Product.Name)</h4>
@@ -104,7 +104,7 @@
                 <span>Total (DKK):</span>
                 @{
                     decimal total = 0;
-                    foreach (var item in Model)
+                    foreach (var item in Model.ShoppingCart)
                     {
                         total = total + item.SubTotal;
                     }

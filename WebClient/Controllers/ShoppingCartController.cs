@@ -11,6 +11,7 @@ namespace WebshopClient.Controllers
     public class ShoppingCartController : Controller
     {
         List<ProductLine> productLineList;
+        CheckoutViewModel checkoutViewModel;
 
         [HttpPost]
         public ActionResult Add(Product product)
@@ -88,14 +89,20 @@ namespace WebshopClient.Controllers
         }
 
         public ActionResult EmptyShoppingCart()
-        {
+        { 
             Session["shoppingCart"] = null;
             return RedirectToAction("Order", "ShoppingCart");
         }
 
         public ActionResult CheckOut()
         {
-            return View((List<ProductLine>)Session["shoppingCart"]);
+            // return View((List<ProductLine>)Session["shoppingCart"]);
+            checkoutViewModel = new CheckoutViewModel();
+            checkoutViewModel.Customer = new Customer();
+            checkoutViewModel.DeliveryDescription = new DeliveryDescription();
+            checkoutViewModel.Order = new Order();
+            checkoutViewModel.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
+            return View(checkoutViewModel);
         }
     }
 }
