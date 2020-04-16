@@ -148,6 +148,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\CheckoutViewModel.cs" />
     <Compile Include="Model\MockHttpSession.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\DeliveryDescription.cs" />
