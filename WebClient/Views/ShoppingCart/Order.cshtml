@@ -42,6 +42,20 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Amount)
+
+                    @*@Html.ActionLink(" ", "DecreaseAmount", "DecreaseAmount", new { id = item.Product.ProductId }, new
+        {
+            style = "background: url('" + Url.Content("~/Images/Minus.png") + "') no-repeat center; display:inline-block; height:12px;width:12px;"
+        })
+             @*<br>*@
+                    @*@Html.ActionLink(" ", "IncreaseAmount", "IncreaseAmount", new { id = item.Product.ProductId }, new
+        {
+            style = "background: url('" + Url.Content("~/Images/Plus.png") + "') no-repeat center; display:inline-block; height:12px;width:12px;"
+        })*@
+
+
+                    @Html.ActionLink("Fjern", "DecreaseAmount", new { id = item.Product.ProductId }) / @Html.ActionLink("Tilføj", "IncreaseAmount", new { id = item.Product.ProductId })
+
                 </td>
                 <td>
                     @Html.ActionLink("Slet", "Delete", new { id = item.Product.ProductId })
