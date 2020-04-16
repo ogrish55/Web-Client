@@ -5,7 +5,7 @@ using System.Web;
 using WebshopClient.CustomerServiceReference;
 using WebshopClient.Model;
 using WebshopClient.OrderServiceReference;
-using WebshopClient.ProductServiceReference;
+using WebshopClient.ProductLineServiceReference;
 
 namespace WebshopClient.Utilities
 {
@@ -83,6 +83,15 @@ namespace WebshopClient.Utilities
             customerToReturn.PhoneNo = webshopCustomer.PhoneNo;
 
             return customerToReturn;
+        }
+
+        public PaymentMethod ConvertFromServicePaymentMethodToClient(ServicePaymentMethod servicePaymentMethod)
+        {
+            PaymentMethod paymentMethod = new PaymentMethod();
+            paymentMethod.PaymentMethodValue = servicePaymentMethod.PaymentMethodValue;
+            paymentMethod.PMethodId = servicePaymentMethod.PMethodId;
+
+            return paymentMethod;
         }
     }
 }

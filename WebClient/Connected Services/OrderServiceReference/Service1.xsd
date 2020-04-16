@@ -6,9 +6,48 @@
       <xs:element minOccurs="0" name="DateOrder" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DiscountId" type="xs:int" />
       <xs:element minOccurs="0" name="FinalPrice" type="xs:decimal" />
-      <xs:element minOccurs="0" name="PaymentMethod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderId" type="xs:int" />
+      <xs:element minOccurs="0" name="PaymentMethod" type="xs:int" />
       <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ServiceCustomerOrder" nillable="true" type="tns:ServiceCustomerOrder" />
+  <xs:complexType name="ArrayOfServiceCustomerOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceCustomerOrder" nillable="true" type="tns:ServiceCustomerOrder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServiceCustomerOrder" nillable="true" type="tns:ArrayOfServiceCustomerOrder" />
+  <xs:complexType name="ServiceDeliveryDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="DeliveryId" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceDeliveryDescription" nillable="true" type="tns:ServiceDeliveryDescription" />
+  <xs:complexType name="ServiceDiscount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DiscountAmount" type="xs:int" />
+      <xs:element minOccurs="0" name="DiscountCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DiscountId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceDiscount" nillable="true" type="tns:ServiceDiscount" />
+  <xs:complexType name="ArrayOfServicePaymentMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServicePaymentMethod" nillable="true" type="tns:ServicePaymentMethod" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServicePaymentMethod" nillable="true" type="tns:ArrayOfServicePaymentMethod" />
+  <xs:complexType name="ServicePaymentMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PMethodId" type="xs:int" />
+      <xs:element minOccurs="0" name="PaymentMethodValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServicePaymentMethod" nillable="true" type="tns:ServicePaymentMethod" />
 </xs:schema>

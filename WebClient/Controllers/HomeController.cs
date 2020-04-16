@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebshopClient.Model;
-using WebshopClient.ProductServiceReference;
+using WebshopClient.ProductLineServiceReference;
 using WebshopClient.Utilities;
 
 namespace WebClient.Controllers
@@ -16,7 +16,7 @@ namespace WebClient.Controllers
         {
             List<Product> clientProducts = new List<Product>();
 
-            using (ProductServiceClient productServiceProxy = new ProductServiceClient())
+            using (ProductLineServiceClient productServiceProxy = new ProductLineServiceClient())
             {
                 List<ServiceProduct> serviceProducts = new List<ServiceProduct>();
                 serviceProducts = productServiceProxy.GetAllProducts().ToList();

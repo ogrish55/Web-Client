@@ -35,7 +35,10 @@ namespace WebshopClient.OrderServiceReference {
         private decimal FinalPriceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PaymentMethodField;
+        private int OrderIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PaymentMethodField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StatusField;
@@ -103,12 +106,25 @@ namespace WebshopClient.OrderServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PaymentMethod {
+        public int OrderId {
+            get {
+                return this.OrderIdField;
+            }
+            set {
+                if ((this.OrderIdField.Equals(value) != true)) {
+                    this.OrderIdField = value;
+                    this.RaisePropertyChanged("OrderId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PaymentMethod {
             get {
                 return this.PaymentMethodField;
             }
             set {
-                if ((object.ReferenceEquals(this.PaymentMethodField, value) != true)) {
+                if ((this.PaymentMethodField.Equals(value) != true)) {
                     this.PaymentMethodField = value;
                     this.RaisePropertyChanged("PaymentMethod");
                 }
@@ -124,6 +140,269 @@ namespace WebshopClient.OrderServiceReference {
                 if ((object.ReferenceEquals(this.StatusField, value) != true)) {
                     this.StatusField = value;
                     this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceDeliveryDescription", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class ServiceDeliveryDescription : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CustomerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DeliveryIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ZipCodeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CustomerId {
+            get {
+                return this.CustomerIdField;
+            }
+            set {
+                if ((this.CustomerIdField.Equals(value) != true)) {
+                    this.CustomerIdField = value;
+                    this.RaisePropertyChanged("CustomerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DeliveryId {
+            get {
+                return this.DeliveryIdField;
+            }
+            set {
+                if ((this.DeliveryIdField.Equals(value) != true)) {
+                    this.DeliveryIdField = value;
+                    this.RaisePropertyChanged("DeliveryId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneNo {
+            get {
+                return this.PhoneNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneNoField, value) != true)) {
+                    this.PhoneNoField = value;
+                    this.RaisePropertyChanged("PhoneNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ZipCode {
+            get {
+                return this.ZipCodeField;
+            }
+            set {
+                if ((this.ZipCodeField.Equals(value) != true)) {
+                    this.ZipCodeField = value;
+                    this.RaisePropertyChanged("ZipCode");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceDiscount", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class ServiceDiscount : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DiscountAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DiscountCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DiscountIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DiscountAmount {
+            get {
+                return this.DiscountAmountField;
+            }
+            set {
+                if ((this.DiscountAmountField.Equals(value) != true)) {
+                    this.DiscountAmountField = value;
+                    this.RaisePropertyChanged("DiscountAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DiscountCode {
+            get {
+                return this.DiscountCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DiscountCodeField, value) != true)) {
+                    this.DiscountCodeField = value;
+                    this.RaisePropertyChanged("DiscountCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DiscountId {
+            get {
+                return this.DiscountIdField;
+            }
+            set {
+                if ((this.DiscountIdField.Equals(value) != true)) {
+                    this.DiscountIdField = value;
+                    this.RaisePropertyChanged("DiscountId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServicePaymentMethod", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class ServicePaymentMethod : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PMethodIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PaymentMethodValueField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PMethodId {
+            get {
+                return this.PMethodIdField;
+            }
+            set {
+                if ((this.PMethodIdField.Equals(value) != true)) {
+                    this.PMethodIdField = value;
+                    this.RaisePropertyChanged("PMethodId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PaymentMethodValue {
+            get {
+                return this.PaymentMethodValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PaymentMethodValueField, value) != true)) {
+                    this.PaymentMethodValueField = value;
+                    this.RaisePropertyChanged("PaymentMethodValue");
                 }
             }
         }
@@ -159,6 +438,78 @@ namespace WebshopClient.OrderServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/UpdateOrder", ReplyAction="http://tempuri.org/ICustomerOrderService/UpdateOrderResponse")]
         System.Threading.Tasks.Task UpdateOrderAsync(WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetAllOrders", ReplyAction="http://tempuri.org/ICustomerOrderService/GetAllOrdersResponse")]
+        WebshopClient.OrderServiceReference.ServiceCustomerOrder[] GetAllOrders();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetAllOrders", ReplyAction="http://tempuri.org/ICustomerOrderService/GetAllOrdersResponse")]
+        System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServiceCustomerOrder[]> GetAllOrdersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetCancelledOrders", ReplyAction="http://tempuri.org/ICustomerOrderService/GetCancelledOrdersResponse")]
+        WebshopClient.OrderServiceReference.ServiceCustomerOrder[] GetCancelledOrders();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetCancelledOrders", ReplyAction="http://tempuri.org/ICustomerOrderService/GetCancelledOrdersResponse")]
+        System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServiceCustomerOrder[]> GetCancelledOrdersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetActiveOrders", ReplyAction="http://tempuri.org/ICustomerOrderService/GetActiveOrdersResponse")]
+        WebshopClient.OrderServiceReference.ServiceCustomerOrder[] GetActiveOrders();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetActiveOrders", ReplyAction="http://tempuri.org/ICustomerOrderService/GetActiveOrdersResponse")]
+        System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServiceCustomerOrder[]> GetActiveOrdersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetOrder", ReplyAction="http://tempuri.org/ICustomerOrderService/GetOrderResponse")]
+        WebshopClient.OrderServiceReference.ServiceCustomerOrder GetOrder(int customerOrderId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetOrder", ReplyAction="http://tempuri.org/ICustomerOrderService/GetOrderResponse")]
+        System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServiceCustomerOrder> GetOrderAsync(int customerOrderId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/InsertDeliveryDescription", ReplyAction="http://tempuri.org/ICustomerOrderService/InsertDeliveryDescriptionResponse")]
+        void InsertDeliveryDescription(WebshopClient.OrderServiceReference.ServiceDeliveryDescription deliveryDescription);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/InsertDeliveryDescription", ReplyAction="http://tempuri.org/ICustomerOrderService/InsertDeliveryDescriptionResponse")]
+        System.Threading.Tasks.Task InsertDeliveryDescriptionAsync(WebshopClient.OrderServiceReference.ServiceDeliveryDescription deliveryDescription);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetDeliveryDescriptionById", ReplyAction="http://tempuri.org/ICustomerOrderService/GetDeliveryDescriptionByIdResponse")]
+        WebshopClient.OrderServiceReference.ServiceDeliveryDescription GetDeliveryDescriptionById(int deliveryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetDeliveryDescriptionById", ReplyAction="http://tempuri.org/ICustomerOrderService/GetDeliveryDescriptionByIdResponse")]
+        System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServiceDeliveryDescription> GetDeliveryDescriptionByIdAsync(int deliveryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/UpdateDeliveryDescription", ReplyAction="http://tempuri.org/ICustomerOrderService/UpdateDeliveryDescriptionResponse")]
+        void UpdateDeliveryDescription(WebshopClient.OrderServiceReference.ServiceDeliveryDescription deliveryDescription);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/UpdateDeliveryDescription", ReplyAction="http://tempuri.org/ICustomerOrderService/UpdateDeliveryDescriptionResponse")]
+        System.Threading.Tasks.Task UpdateDeliveryDescriptionAsync(WebshopClient.OrderServiceReference.ServiceDeliveryDescription deliveryDescription);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/DeleteDeliveryDescription", ReplyAction="http://tempuri.org/ICustomerOrderService/DeleteDeliveryDescriptionResponse")]
+        void DeleteDeliveryDescription(int deliveryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/DeleteDeliveryDescription", ReplyAction="http://tempuri.org/ICustomerOrderService/DeleteDeliveryDescriptionResponse")]
+        System.Threading.Tasks.Task DeleteDeliveryDescriptionAsync(int deliveryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/InsertDiscount", ReplyAction="http://tempuri.org/ICustomerOrderService/InsertDiscountResponse")]
+        void InsertDiscount(WebshopClient.OrderServiceReference.ServiceDiscount discount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/InsertDiscount", ReplyAction="http://tempuri.org/ICustomerOrderService/InsertDiscountResponse")]
+        System.Threading.Tasks.Task InsertDiscountAsync(WebshopClient.OrderServiceReference.ServiceDiscount discount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/DeleteDiscount", ReplyAction="http://tempuri.org/ICustomerOrderService/DeleteDiscountResponse")]
+        int DeleteDiscount(int discountId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/DeleteDiscount", ReplyAction="http://tempuri.org/ICustomerOrderService/DeleteDiscountResponse")]
+        System.Threading.Tasks.Task<int> DeleteDiscountAsync(int discountId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetDiscountByCode", ReplyAction="http://tempuri.org/ICustomerOrderService/GetDiscountByCodeResponse")]
+        int GetDiscountByCode(string code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetDiscountByCode", ReplyAction="http://tempuri.org/ICustomerOrderService/GetDiscountByCodeResponse")]
+        System.Threading.Tasks.Task<int> GetDiscountByCodeAsync(string code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetPaymentMethods", ReplyAction="http://tempuri.org/ICustomerOrderService/GetPaymentMethodsResponse")]
+        WebshopClient.OrderServiceReference.ServicePaymentMethod[] GetPaymentMethods();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetPaymentMethods", ReplyAction="http://tempuri.org/ICustomerOrderService/GetPaymentMethodsResponse")]
+        System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServicePaymentMethod[]> GetPaymentMethodsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -210,6 +561,102 @@ namespace WebshopClient.OrderServiceReference {
         
         public System.Threading.Tasks.Task UpdateOrderAsync(WebshopClient.OrderServiceReference.ServiceCustomerOrder order) {
             return base.Channel.UpdateOrderAsync(order);
+        }
+        
+        public WebshopClient.OrderServiceReference.ServiceCustomerOrder[] GetAllOrders() {
+            return base.Channel.GetAllOrders();
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServiceCustomerOrder[]> GetAllOrdersAsync() {
+            return base.Channel.GetAllOrdersAsync();
+        }
+        
+        public WebshopClient.OrderServiceReference.ServiceCustomerOrder[] GetCancelledOrders() {
+            return base.Channel.GetCancelledOrders();
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServiceCustomerOrder[]> GetCancelledOrdersAsync() {
+            return base.Channel.GetCancelledOrdersAsync();
+        }
+        
+        public WebshopClient.OrderServiceReference.ServiceCustomerOrder[] GetActiveOrders() {
+            return base.Channel.GetActiveOrders();
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServiceCustomerOrder[]> GetActiveOrdersAsync() {
+            return base.Channel.GetActiveOrdersAsync();
+        }
+        
+        public WebshopClient.OrderServiceReference.ServiceCustomerOrder GetOrder(int customerOrderId) {
+            return base.Channel.GetOrder(customerOrderId);
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServiceCustomerOrder> GetOrderAsync(int customerOrderId) {
+            return base.Channel.GetOrderAsync(customerOrderId);
+        }
+        
+        public void InsertDeliveryDescription(WebshopClient.OrderServiceReference.ServiceDeliveryDescription deliveryDescription) {
+            base.Channel.InsertDeliveryDescription(deliveryDescription);
+        }
+        
+        public System.Threading.Tasks.Task InsertDeliveryDescriptionAsync(WebshopClient.OrderServiceReference.ServiceDeliveryDescription deliveryDescription) {
+            return base.Channel.InsertDeliveryDescriptionAsync(deliveryDescription);
+        }
+        
+        public WebshopClient.OrderServiceReference.ServiceDeliveryDescription GetDeliveryDescriptionById(int deliveryId) {
+            return base.Channel.GetDeliveryDescriptionById(deliveryId);
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServiceDeliveryDescription> GetDeliveryDescriptionByIdAsync(int deliveryId) {
+            return base.Channel.GetDeliveryDescriptionByIdAsync(deliveryId);
+        }
+        
+        public void UpdateDeliveryDescription(WebshopClient.OrderServiceReference.ServiceDeliveryDescription deliveryDescription) {
+            base.Channel.UpdateDeliveryDescription(deliveryDescription);
+        }
+        
+        public System.Threading.Tasks.Task UpdateDeliveryDescriptionAsync(WebshopClient.OrderServiceReference.ServiceDeliveryDescription deliveryDescription) {
+            return base.Channel.UpdateDeliveryDescriptionAsync(deliveryDescription);
+        }
+        
+        public void DeleteDeliveryDescription(int deliveryId) {
+            base.Channel.DeleteDeliveryDescription(deliveryId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteDeliveryDescriptionAsync(int deliveryId) {
+            return base.Channel.DeleteDeliveryDescriptionAsync(deliveryId);
+        }
+        
+        public void InsertDiscount(WebshopClient.OrderServiceReference.ServiceDiscount discount) {
+            base.Channel.InsertDiscount(discount);
+        }
+        
+        public System.Threading.Tasks.Task InsertDiscountAsync(WebshopClient.OrderServiceReference.ServiceDiscount discount) {
+            return base.Channel.InsertDiscountAsync(discount);
+        }
+        
+        public int DeleteDiscount(int discountId) {
+            return base.Channel.DeleteDiscount(discountId);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteDiscountAsync(int discountId) {
+            return base.Channel.DeleteDiscountAsync(discountId);
+        }
+        
+        public int GetDiscountByCode(string code) {
+            return base.Channel.GetDiscountByCode(code);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetDiscountByCodeAsync(string code) {
+            return base.Channel.GetDiscountByCodeAsync(code);
+        }
+        
+        public WebshopClient.OrderServiceReference.ServicePaymentMethod[] GetPaymentMethods() {
+            return base.Channel.GetPaymentMethods();
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServicePaymentMethod[]> GetPaymentMethodsAsync() {
+            return base.Channel.GetPaymentMethodsAsync();
         }
     }
 }
