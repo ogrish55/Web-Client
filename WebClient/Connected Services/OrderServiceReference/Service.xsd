@@ -177,4 +177,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetPaymentMethods">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPaymentMethodsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Service.Model" minOccurs="0" name="GetPaymentMethodsResult" nillable="true" type="q11:ArrayOfServicePaymentMethod" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

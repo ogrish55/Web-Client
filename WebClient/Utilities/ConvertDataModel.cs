@@ -84,5 +84,14 @@ namespace WebshopClient.Utilities
 
             return customerToReturn;
         }
+
+        public PaymentMethod ConvertFromServicePaymentMethodToClient(ServicePaymentMethod servicePaymentMethod)
+        {
+            PaymentMethod paymentMethod = new PaymentMethod();
+            paymentMethod.PaymentMethodValue = servicePaymentMethod.PaymentMethodValue;
+            paymentMethod.PMethodId = servicePaymentMethod.PMethodId;
+
+            return paymentMethod;
+        }
     }
 }

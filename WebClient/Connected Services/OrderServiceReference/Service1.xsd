@@ -37,4 +37,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ServiceDiscount" nillable="true" type="tns:ServiceDiscount" />
+  <xs:complexType name="ArrayOfServicePaymentMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServicePaymentMethod" nillable="true" type="tns:ServicePaymentMethod" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServicePaymentMethod" nillable="true" type="tns:ArrayOfServicePaymentMethod" />
+  <xs:complexType name="ServicePaymentMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PMethodId" type="xs:int" />
+      <xs:element minOccurs="0" name="PaymentMethodValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServicePaymentMethod" nillable="true" type="tns:ServicePaymentMethod" />
 </xs:schema>

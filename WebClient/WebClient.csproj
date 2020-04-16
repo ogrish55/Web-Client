@@ -152,6 +152,7 @@
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\DeliveryDescription.cs" />
     <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\PaymentMethod.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -187,6 +188,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\OrderServiceReference\WebshopClient.OrderServiceReference.ServiceDeliveryDescription.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\OrderServiceReference\WebshopClient.OrderServiceReference.ServicePaymentMethod.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\ProductLineServiceReference\ProductLineService.wsdl" />
