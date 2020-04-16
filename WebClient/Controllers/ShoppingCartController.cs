@@ -129,6 +129,7 @@ namespace WebshopClient.Controllers
                 {
                     found = true;
                     productLineList[i].Amount += 1;
+                    productLineList[i].SubTotal = productLineList[i].SubTotal + productLineList[i].Product.Price;
                 }
                 if (!found)
                 {
@@ -154,6 +155,7 @@ namespace WebshopClient.Controllers
                 {
                     found = true;
                     productLineList[i].Amount -= 1;
+                    productLineList[i].SubTotal = productLineList[i].SubTotal - productLineList[i].Product.Price;
                     foundProductLine = productLineList[i];
                 }
                 if (!found)
