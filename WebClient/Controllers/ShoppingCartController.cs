@@ -173,7 +173,6 @@ namespace WebshopClient.Controllers
             return RedirectToAction("Order");
         }
 
-
     }
 }
 
