@@ -94,5 +94,23 @@ namespace WebshopClient.Utilities
 
             return paymentMethod;
         }
+
+        public Discount ConvertFromServiceDiscount(ServiceDiscount serviceDiscount)
+        {
+            Discount discountToReturn = new Discount();
+            discountToReturn.DiscountCode = serviceDiscount.DiscountCode;
+            discountToReturn.DiscountAmount = serviceDiscount.DiscountAmount;
+
+            return discountToReturn;
+        }
+
+        public ServiceDiscount ConvertToServiceDiscount(Discount webshopDiscount)
+        {
+            ServiceDiscount serviceDiscountToReturn = new ServiceDiscount();
+            serviceDiscountToReturn.DiscountCode = webshopDiscount.DiscountCode;
+            serviceDiscountToReturn.DiscountAmount = webshopDiscount.DiscountAmount;
+
+            return serviceDiscountToReturn;
+        }
     }
 }

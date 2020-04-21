@@ -52,7 +52,41 @@ namespace WebClient.Tests.Controllers
             var context = new Mock<ControllerContext>();
             var session = new MockHttpSession();
 
+            List<ProductLine> productLineList = new List<ProductLine>();
+
+            ShoppingCartController cartController = new ShoppingCartController();
+            cartController.ControllerContext = context.Object;
+
+            Product product = new Product();
+            product.ProductId = 1;
+            product.Price = 100;
+
+            ProductLine productLine = new ProductLine();
+            productLine.Amount = 0;
+            productLine.Product = product;
+
+            productLineList.Add(productLine);
+
+            session.insertIntoDictionary("shoppingCart", productLineList);
+
             context.Setup(m => m.HttpContext.Session).Returns(session);
+
+            // Act
+            cartController.Add(product);
+            cartController.IncreaseAmount(productLine.Product.ProductId);
+
+            // Assert
+            Assert.AreEqual(2, productLine.Amount);
+        }
+
+        [TestMethod]
+        public void TestDecreaseAmountOnProductLine()
+        {
+            // Arrange
+            var context = new Mock<ControllerContext>();
+            var session = new MockHttpSession();
+
+            List<ProductLine> productLineList = new List<ProductLine>();
 
             ShoppingCartController cartController = new ShoppingCartController();
             cartController.ControllerContext = context.Object;
@@ -65,14 +99,17 @@ namespace WebClient.Tests.Controllers
             productLine.Amount = 1;
             productLine.Product = product;
 
-            int originalAmount = productLine.Amount;
+            productLineList.Add(productLine);
+            session.insertIntoDictionary("shoppingCart", productLineList);
+
+            context.Setup(m => m.HttpContext.Session).Returns(session);
 
             // Act
             cartController.Add(product);
-            cartController.IncreaseAmount(productLine.Product.ProductId);
+            cartController.DecreaseAmount(productLine.Product.ProductId);
 
             // Assert
-            Assert.AreEqual(originalAmount + 1, productLine.Amount);
+            Assert.AreEqual(1, productLine.Amount);
         }
     }
 }

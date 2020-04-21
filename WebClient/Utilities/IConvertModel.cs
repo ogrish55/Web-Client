@@ -18,5 +18,7 @@ namespace WebshopClient.Utilities
         ServiceCustomerOrder ConvertToServiceCustomerOrder(Order webshopOrder);
         Customer ConvertFromServiceCustomer(ServiceCustomer serviceCustomer);
         ServiceCustomer ConvertToServiceCustomer(Customer webshopCustomer);
+        Discount ConvertFromServiceDiscount(ServiceDiscount serviceDiscount);
+        ServiceDiscount ConvertToServiceDiscount(Discount webshopDiscount);
     }
 }
