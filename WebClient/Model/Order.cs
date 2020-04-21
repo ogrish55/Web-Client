@@ -13,5 +13,13 @@ namespace WebshopClient.Model
         public int CustomerId { get; set; }
         public int DiscountId { get; set; }
         public int PaymentMethod { get; set; }
+
+        public int OrderId { get; set; }
+
+        public Order()
+        {
+            DateOrder = DateTime.Now;
+            this.Status = "Active";
+        }
     }
 }

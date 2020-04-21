@@ -127,10 +127,10 @@ namespace WebshopClient.CustomerServiceReference {
     public interface ICustomerService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerService/InsertCustomer", ReplyAction="http://tempuri.org/ICustomerService/InsertCustomerResponse")]
-        void InsertCustomer(WebshopClient.CustomerServiceReference.ServiceCustomer customer);
+        int InsertCustomer(WebshopClient.CustomerServiceReference.ServiceCustomer customer);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerService/InsertCustomer", ReplyAction="http://tempuri.org/ICustomerService/InsertCustomerResponse")]
-        System.Threading.Tasks.Task InsertCustomerAsync(WebshopClient.CustomerServiceReference.ServiceCustomer customer);
+        System.Threading.Tasks.Task<int> InsertCustomerAsync(WebshopClient.CustomerServiceReference.ServiceCustomer customer);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerService/UpdateCustomer", ReplyAction="http://tempuri.org/ICustomerService/UpdateCustomerResponse")]
         void UpdateCustomer(WebshopClient.CustomerServiceReference.ServiceCustomer customer);
@@ -172,11 +172,11 @@ namespace WebshopClient.CustomerServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public void InsertCustomer(WebshopClient.CustomerServiceReference.ServiceCustomer customer) {
-            base.Channel.InsertCustomer(customer);
+        public int InsertCustomer(WebshopClient.CustomerServiceReference.ServiceCustomer customer) {
+            return base.Channel.InsertCustomer(customer);
         }
         
-        public System.Threading.Tasks.Task InsertCustomerAsync(WebshopClient.CustomerServiceReference.ServiceCustomer customer) {
+        public System.Threading.Tasks.Task<int> InsertCustomerAsync(WebshopClient.CustomerServiceReference.ServiceCustomer customer) {
             return base.Channel.InsertCustomerAsync(customer);
         }
         

@@ -428,10 +428,10 @@ namespace WebshopClient.OrderServiceReference {
         System.Threading.Tasks.Task DeleteOrderAsync(int orderId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/InsertOrder", ReplyAction="http://tempuri.org/ICustomerOrderService/InsertOrderResponse")]
-        void InsertOrder(WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
+        int InsertOrder(WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/InsertOrder", ReplyAction="http://tempuri.org/ICustomerOrderService/InsertOrderResponse")]
-        System.Threading.Tasks.Task InsertOrderAsync(WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
+        System.Threading.Tasks.Task<int> InsertOrderAsync(WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/UpdateOrder", ReplyAction="http://tempuri.org/ICustomerOrderService/UpdateOrderResponse")]
         void UpdateOrder(WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
@@ -547,11 +547,11 @@ namespace WebshopClient.OrderServiceReference {
             return base.Channel.DeleteOrderAsync(orderId);
         }
         
-        public void InsertOrder(WebshopClient.OrderServiceReference.ServiceCustomerOrder order) {
-            base.Channel.InsertOrder(order);
+        public int InsertOrder(WebshopClient.OrderServiceReference.ServiceCustomerOrder order) {
+            return base.Channel.InsertOrder(order);
         }
         
-        public System.Threading.Tasks.Task InsertOrderAsync(WebshopClient.OrderServiceReference.ServiceCustomerOrder order) {
+        public System.Threading.Tasks.Task<int> InsertOrderAsync(WebshopClient.OrderServiceReference.ServiceCustomerOrder order) {
             return base.Channel.InsertOrderAsync(order);
         }
         

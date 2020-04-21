@@ -7,117 +7,120 @@
 <div class="page-header">
     <h1>Bestil</h1>
 </div>
-<div class="row">
-    <div class="col-md-8">
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Allerede kunde?</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">E-mail</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Indtast e-mail">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Adgangskode</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Adgangskode">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Log ind</button>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <h3>Opret dig som kunde</h3>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="firstName">Fornavn</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="lastName">Efternavn</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="address">Adresse</label>
-                        <input class="form-control" id="address">
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label>Post nr.</label>
-                        <input type="text" class="form-control" id="zipCode" placeholder="" value="" required="">
-                    </div>
-                    <div class="col-md-8 mb-3">
-                        <label for="city">By</label>
-                        <input type="text" class="form-control" id="city" placeholder="" value="" required="">
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="email">E-mail</label>
-                        <input class="form-control" id="email">
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="email">Telefon</label>
-                        <input class="form-control" id="phoneNo">
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <hr />
-                        <h4>Betaling</h4>
-                        <div class="d-block my-3">
-                            @foreach (var item in Model.PaymentMethods)
-                            {
-                                <div class="custom-control custom-radio">
-                                    <input id="@item.PaymentMethodValue" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
-                                    <label class="custom-control-label" for="credit">@item.PaymentMethodValue</label>
-                                </div>
-                            }
+@using (Html.BeginForm("CheckOut", "ShoppingCart", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Allerede kunde?</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">E-mail</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Indtast e-mail">
                         </div>
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <hr />
-                        <button class="btn btn-primary btn-md btn-block" type="submit">Fortsæt</button>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Adgangskode</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Adgangskode">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Log ind</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h3>Opret dig som kunde</h3>
+                    <div class="row">
+                        <div class="editor-label col-md-12 mb-3">
+                            <label>Navn</label>
+                        </div>
+                        <div class="editor-field col-md-12 mb-3">
+                            @Html.EditorFor(model => model.Customer.Name)
+                        </div>
+                        <div class="editor-label col-md-12 mb-3">
+                            <label>Adresse</label>
+                        </div>
+                        <div class="editor-field col-md-12 mb-3">
+                            @Html.EditorFor(model => model.Customer.Address)
+                        </div>
+                        <div class="editor-label col-md-12 mb-3">
+                            <label>Postnummer</label>
+                        </div>
+                        <div class="editor-field col-md-12 mb-3">
+                            @Html.EditorFor(model => model.Customer.ZipCode)
+                        </div>
+                        <div class="editor-label col-md-12 mb-3">
+                            <label>Telefon</label>
+                        </div>
+                        <div class="editor-field col-md-12 mb-3">
+                            @Html.EditorFor(model => model.Customer.PhoneNo)
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <hr />
+                            <h4>Betaling</h4>
+                            <div class="d-block my-3">
+                                @{
+                                    int id = 1;
+                                    foreach (var item in Model.PaymentMethods)
+                                    {
+                                        <div>
+                                        @item.PaymentMethodValue
+                                        @Html.RadioButtonFor(model => model.Order.PaymentMethod, id, false)
+                                        </div>
+                                        id++;
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <hr />
+                            <button class="btn btn-primary btn-md btn-block" type="submit">Fortsæt</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-4 order-md-2 mb-4">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Din indkøbskurv</span> 
-        </h4>
-        <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                @if (Model != null)
-                {
-                    foreach (var item in Model.ShoppingCart)
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Din indkøbskurv</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    @if (Model != null)
                     {
-                        <div>
-                            <h4 class="my-0">@Html.DisplayFor(modelItem => item.Product.Name)</h4>
-                            <small class="text-muted">@Html.DisplayFor(modelItem => item.Product.Description)</small>
-                        </div>
-                        <span class="text-muted">@Html.DisplayFor(modelItem => item.SubTotal),-</span>
-                        <hr />
+                        foreach (var item in Model.ShoppingCart)
+                        {
+                            <div>
+                                <h4 class="my-0">@Html.DisplayFor(modelItem => item.Product.Name)</h4>
+                                <small class="text-muted">@Html.DisplayFor(modelItem => item.Product.Description)</small>
+                            </div>
+                            <span class="text-muted">@Html.DisplayFor(modelItem => item.SubTotal),-</span>
+                            <hr />
+                        }
                     }
-                }
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-                <span>Total (DKK):</span>
-                @{
-                    decimal total = 0;
-                    foreach (var item in Model.ShoppingCart)
-                    {
-                        total = total + item.SubTotal;
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (DKK):</span>
+                    @{
+                        decimal total = 0;
+                        foreach (var item in Model.ShoppingCart)
+                        {
+                            total = total + item.SubTotal;
+                        }
+                        <strong>@total,-</strong>
+
                     }
-                    <strong>@total,-</strong>
+                </li>
+            </ul>
 
-                }
-            </li>
-        </ul>
-
-        <form class="card p-2">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Rabatkode">
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary" id="discountCodeBtn">Tilføj</button>
-            </div>
-            </div>
-        </form>
+            <form class="card p-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Rabatkode">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary" id="discountCodeBtn">Tilføj</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+}
 
 
