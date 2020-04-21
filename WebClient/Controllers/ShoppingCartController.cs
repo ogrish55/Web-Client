@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebshopClient.Model;
-using WebshopClient.ProductLineServiceReference;
+using WebshopClient.CustomerServiceReference;
 using WebshopClient.OrderServiceReference;
+using WebshopClient.ProductLineServiceReference;
 using WebshopClient.Utilities;
 
 namespace WebshopClient.Controllers
@@ -114,6 +115,36 @@ namespace WebshopClient.Controllers
                 checkoutViewModel.PaymentMethods = listToAdd;
             }
             return View(checkoutViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult CheckOut(CheckoutViewModel model)
+        {
+            model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
+            using(CustomerServiceClient customer = new CustomerServiceClient())
+            {
+                int customerID = customer.InsertCustomer(new ConvertDataModel().ConvertToServiceCustomer(model.Customer));
+                model.Order.CustomerId = customerID;
+                using(CustomerOrderServiceClient order = new CustomerOrderServiceClient())
+                {
+                    int orderID = order.InsertOrder(new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order));
+                    model.Order.OrderId = orderID;
+                    using(ProductLineServiceClient productLine = new ProductLineServiceClient())
+                    {
+                        decimal totalPrice = 0;
+                        foreach (var item in model.ShoppingCart)
+                        {
+                            totalPrice += item.SubTotal;
+                            item.OrderId = orderID;
+                            productLine.InsertProductLine(new ConvertProductLine().ConvertToServiceProductLine(item));
+                        }
+                        model.Order.FinalPrice = totalPrice;
+                        order.UpdateOrder(new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order));
+                    }
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult IncreaseAmount(int id)

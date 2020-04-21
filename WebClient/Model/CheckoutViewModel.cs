@@ -13,6 +13,11 @@ namespace WebshopClient.Model
         public DeliveryDescription DeliveryDescription { get; set; }
         public List<PaymentMethod> PaymentMethods { get; set; }
 
-
+        public CheckoutViewModel()
+        {
+            Customer = new Customer();
+            Order = new Order();
+        }
     }
+
 }

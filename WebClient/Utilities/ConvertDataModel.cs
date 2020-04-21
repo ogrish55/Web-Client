@@ -57,6 +57,7 @@ namespace WebshopClient.Utilities
             orderToReturn.CustomerId = webshopOrder.CustomerId;
             orderToReturn.DiscountId = webshopOrder.DiscountId;
             orderToReturn.PaymentMethod = webshopOrder.PaymentMethod;
+            orderToReturn.OrderId = webshopOrder.OrderId;
 
             return orderToReturn;
         }
