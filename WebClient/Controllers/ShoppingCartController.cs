@@ -99,11 +99,8 @@ namespace WebshopClient.Controllers
 
         public ActionResult CheckOut()
         {
-            // return View((List<ProductLine>)Session["shoppingCart"]);
             checkoutViewModel = new CheckoutViewModel();
-            checkoutViewModel.Customer = new Customer();
             checkoutViewModel.DeliveryDescription = new DeliveryDescription();
-            checkoutViewModel.Order = new Order();
             checkoutViewModel.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
             using(CustomerOrderServiceClient proxy = new CustomerOrderServiceClient())
             {
@@ -120,31 +117,48 @@ namespace WebshopClient.Controllers
         [HttpPost]
         public ActionResult CheckOut(CheckoutViewModel model)
         {
-            model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
-            using(CustomerServiceClient customer = new CustomerServiceClient())
+            if (ModelState.IsValid)
             {
-                int customerID = customer.InsertCustomer(new ConvertDataModel().ConvertToServiceCustomer(model.Customer));
-                model.Order.CustomerId = customerID;
-                using(CustomerOrderServiceClient order = new CustomerOrderServiceClient())
+                model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
+                using (CustomerServiceClient customer = new CustomerServiceClient())
+                using (CustomerOrderServiceClient order = new CustomerOrderServiceClient())
+                using (ProductLineServiceClient productLine = new ProductLineServiceClient())
                 {
-                    int orderID = order.InsertOrder(new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order));
-                    model.Order.OrderId = orderID;
-                    using(ProductLineServiceClient productLine = new ProductLineServiceClient())
+                    int customerID = customer.InsertCustomer(new ConvertDataModel().ConvertToServiceCustomer(model.Customer));
+                    model.Order.CustomerId = customerID;
                     {
-                        decimal totalPrice = 0;
-                        foreach (var item in model.ShoppingCart)
+                        int orderID = order.InsertOrder(new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order));
+                        model.Order.OrderId = orderID;
                         {
-                            totalPrice += item.SubTotal;
-                            item.OrderId = orderID;
-                            productLine.InsertProductLine(new ConvertProductLine().ConvertToServiceProductLine(item));
+                            decimal totalPrice = 0;
+                            foreach (var item in model.ShoppingCart)
+                            {
+                                totalPrice += item.SubTotal;
+                                item.OrderId = orderID;
+                                productLine.InsertProductLine(new ConvertProductLine().ConvertToServiceProductLine(item));
+                            }
+                            model.Order.FinalPrice = totalPrice;
+                            order.UpdateOrder(new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order));
                         }
-                        model.Order.FinalPrice = totalPrice;
-                        order.UpdateOrder(new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order));
                     }
                 }
-            }
 
-            return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                using (CustomerOrderServiceClient proxy = new CustomerOrderServiceClient())
+                {
+                    List<PaymentMethod> listToAdd = new List<PaymentMethod>();
+                    foreach (var item in proxy.GetPaymentMethods())
+                    {
+                        listToAdd.Add(new ConvertDataModel().ConvertFromServicePaymentMethodToClient(item));
+                    }
+                    model.PaymentMethods = listToAdd;
+                }
+                model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
+                return View(model);
+            }
         }
 
         public ActionResult IncreaseAmount(int id)
