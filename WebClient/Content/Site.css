@@ -69,3 +69,7 @@ textarea {
 #discountCodeBtn {
     margin-top: 12px;
 }
+
+.field-validation-valid {
+    display: none;
+}
