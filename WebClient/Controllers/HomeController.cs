@@ -55,6 +55,29 @@ namespace WebClient.Controllers
             return View("Index",priceRangeProducts);
         }
 
+        public ActionResult ProductsBasedOnBrand(string brandName)
+        {
+            List<Product> productsBasedOnBrand = new List<Product>();
+
+            using (ProductLineServiceClient productServiceProxy = new ProductLineServiceClient())
+            {
+                List<ServiceProduct> serviceProducts = new List<ServiceProduct>();
+                serviceProducts = productServiceProxy.GetAllProducts().ToList();
+
+                int i = 0;
+                while (i < serviceProducts.Count())
+                {
+                    if (serviceProducts[i].Brand.Equals(brandName))
+                    {
+                        productsBasedOnBrand.Add(convertModel.ConvertFromServiceProduct(serviceProducts[i]));
+                    }
+                    i++;
+                }
+            }
+
+            return View("Index", productsBasedOnBrand);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
