@@ -97,6 +97,12 @@
   <wsdl:message name="ICustomerOrderService_GetPaymentMethods_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPaymentMethodsResponse" />
   </wsdl:message>
+  <wsdl:message name="ICustomerOrderService_FinishCheckout_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinishCheckout" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerOrderService_FinishCheckout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FinishCheckoutResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICustomerOrderService">
     <wsdl:operation name="DeleteOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderService/DeleteOrder" message="tns:ICustomerOrderService_DeleteOrder_InputMessage" />
@@ -157,6 +163,10 @@
     <wsdl:operation name="GetPaymentMethods">
       <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderService/GetPaymentMethods" message="tns:ICustomerOrderService_GetPaymentMethods_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICustomerOrderService/GetPaymentMethodsResponse" message="tns:ICustomerOrderService_GetPaymentMethods_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinishCheckout">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerOrderService/FinishCheckout" message="tns:ICustomerOrderService_FinishCheckout_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerOrderService/FinishCheckoutResponse" message="tns:ICustomerOrderService_FinishCheckout_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICustomerOrderService" type="tns:ICustomerOrderService">
@@ -289,6 +299,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetPaymentMethods">
       <soap:operation soapAction="http://tempuri.org/ICustomerOrderService/GetPaymentMethods" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinishCheckout">
+      <soap:operation soapAction="http://tempuri.org/ICustomerOrderService/FinishCheckout" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

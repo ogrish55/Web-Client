@@ -4,14 +4,41 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
       <xs:element minOccurs="0" name="DateOrder" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DiscountId" type="xs:int" />
+      <xs:element minOccurs="0" name="DiscountCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FinalPrice" type="xs:decimal" />
       <xs:element minOccurs="0" name="OrderId" type="xs:int" />
       <xs:element minOccurs="0" name="PaymentMethod" type="xs:int" />
+      <xs:element minOccurs="0" name="ShoppingCart" nillable="true" type="tns:ArrayOfServiceProductLine" />
       <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ServiceCustomerOrder" nillable="true" type="tns:ServiceCustomerOrder" />
+  <xs:complexType name="ArrayOfServiceProductLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceProductLine" nillable="true" type="tns:ServiceProductLine" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServiceProductLine" nillable="true" type="tns:ArrayOfServiceProductLine" />
+  <xs:complexType name="ServiceProductLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:int" />
+      <xs:element minOccurs="0" name="OrderId" type="xs:int" />
+      <xs:element minOccurs="0" name="Product" nillable="true" type="tns:ServiceProduct" />
+      <xs:element minOccurs="0" name="ProductLineId" type="xs:int" />
+      <xs:element minOccurs="0" name="SubTotal" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceProductLine" nillable="true" type="tns:ServiceProductLine" />
+  <xs:complexType name="ServiceProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AmountOnStock" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceProduct" nillable="true" type="tns:ServiceProduct" />
   <xs:complexType name="ArrayOfServiceCustomerOrder">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceCustomerOrder" nillable="true" type="tns:ServiceCustomerOrder" />
@@ -33,7 +60,6 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="DiscountAmount" type="xs:int" />
       <xs:element minOccurs="0" name="DiscountCode" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DiscountId" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ServiceDiscount" nillable="true" type="tns:ServiceDiscount" />
@@ -50,4 +76,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ServicePaymentMethod" nillable="true" type="tns:ServicePaymentMethod" />
+  <xs:complexType name="ServiceCustomer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNo" type="xs:int" />
+      <xs:element minOccurs="0" name="ZipCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceCustomer" nillable="true" type="tns:ServiceCustomer" />
 </xs:schema>

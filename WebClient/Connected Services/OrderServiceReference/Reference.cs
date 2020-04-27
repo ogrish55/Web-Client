@@ -29,7 +29,7 @@ namespace WebshopClient.OrderServiceReference {
         private System.DateTime DateOrderField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DiscountIdField;
+        private string DiscountCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal FinalPriceField;
@@ -39,6 +39,9 @@ namespace WebshopClient.OrderServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PaymentMethodField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WebshopClient.OrderServiceReference.ServiceProductLine[] ShoppingCartField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StatusField;
@@ -80,14 +83,14 @@ namespace WebshopClient.OrderServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DiscountId {
+        public string DiscountCode {
             get {
-                return this.DiscountIdField;
+                return this.DiscountCodeField;
             }
             set {
-                if ((this.DiscountIdField.Equals(value) != true)) {
-                    this.DiscountIdField = value;
-                    this.RaisePropertyChanged("DiscountId");
+                if ((object.ReferenceEquals(this.DiscountCodeField, value) != true)) {
+                    this.DiscountCodeField = value;
+                    this.RaisePropertyChanged("DiscountCode");
                 }
             }
         }
@@ -132,6 +135,19 @@ namespace WebshopClient.OrderServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public WebshopClient.OrderServiceReference.ServiceProductLine[] ShoppingCart {
+            get {
+                return this.ShoppingCartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ShoppingCartField, value) != true)) {
+                    this.ShoppingCartField = value;
+                    this.RaisePropertyChanged("ShoppingCart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Status {
             get {
                 return this.StatusField;
@@ -140,6 +156,224 @@ namespace WebshopClient.OrderServiceReference {
                 if ((object.ReferenceEquals(this.StatusField, value) != true)) {
                     this.StatusField = value;
                     this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceProductLine", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class ServiceProductLine : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OrderIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WebshopClient.OrderServiceReference.ServiceProduct ProductField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductLineIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal SubTotalField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OrderId {
+            get {
+                return this.OrderIdField;
+            }
+            set {
+                if ((this.OrderIdField.Equals(value) != true)) {
+                    this.OrderIdField = value;
+                    this.RaisePropertyChanged("OrderId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WebshopClient.OrderServiceReference.ServiceProduct Product {
+            get {
+                return this.ProductField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductField, value) != true)) {
+                    this.ProductField = value;
+                    this.RaisePropertyChanged("Product");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductLineId {
+            get {
+                return this.ProductLineIdField;
+            }
+            set {
+                if ((this.ProductLineIdField.Equals(value) != true)) {
+                    this.ProductLineIdField = value;
+                    this.RaisePropertyChanged("ProductLineId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal SubTotal {
+            get {
+                return this.SubTotalField;
+            }
+            set {
+                if ((this.SubTotalField.Equals(value) != true)) {
+                    this.SubTotalField = value;
+                    this.RaisePropertyChanged("SubTotal");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceProduct", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class ServiceProduct : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AmountOnStockField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal PriceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AmountOnStock {
+            get {
+                return this.AmountOnStockField;
+            }
+            set {
+                if ((this.AmountOnStockField.Equals(value) != true)) {
+                    this.AmountOnStockField = value;
+                    this.RaisePropertyChanged("AmountOnStock");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Price {
+            get {
+                return this.PriceField;
+            }
+            set {
+                if ((this.PriceField.Equals(value) != true)) {
+                    this.PriceField = value;
+                    this.RaisePropertyChanged("Price");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductId {
+            get {
+                return this.ProductIdField;
+            }
+            set {
+                if ((this.ProductIdField.Equals(value) != true)) {
+                    this.ProductIdField = value;
+                    this.RaisePropertyChanged("ProductId");
                 }
             }
         }
@@ -294,9 +528,6 @@ namespace WebshopClient.OrderServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DiscountCodeField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DiscountIdField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -329,19 +560,6 @@ namespace WebshopClient.OrderServiceReference {
                 if ((object.ReferenceEquals(this.DiscountCodeField, value) != true)) {
                     this.DiscountCodeField = value;
                     this.RaisePropertyChanged("DiscountCode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DiscountId {
-            get {
-                return this.DiscountIdField;
-            }
-            set {
-                if ((this.DiscountIdField.Equals(value) != true)) {
-                    this.DiscountIdField = value;
-                    this.RaisePropertyChanged("DiscountId");
                 }
             }
         }
@@ -403,6 +621,115 @@ namespace WebshopClient.OrderServiceReference {
                 if ((object.ReferenceEquals(this.PaymentMethodValueField, value) != true)) {
                     this.PaymentMethodValueField = value;
                     this.RaisePropertyChanged("PaymentMethodValue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceCustomer", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class ServiceCustomer : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CustomerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PhoneNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ZipCodeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CustomerId {
+            get {
+                return this.CustomerIdField;
+            }
+            set {
+                if ((this.CustomerIdField.Equals(value) != true)) {
+                    this.CustomerIdField = value;
+                    this.RaisePropertyChanged("CustomerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PhoneNo {
+            get {
+                return this.PhoneNoField;
+            }
+            set {
+                if ((this.PhoneNoField.Equals(value) != true)) {
+                    this.PhoneNoField = value;
+                    this.RaisePropertyChanged("PhoneNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ZipCode {
+            get {
+                return this.ZipCodeField;
+            }
+            set {
+                if ((this.ZipCodeField.Equals(value) != true)) {
+                    this.ZipCodeField = value;
+                    this.RaisePropertyChanged("ZipCode");
                 }
             }
         }
@@ -494,10 +821,10 @@ namespace WebshopClient.OrderServiceReference {
         System.Threading.Tasks.Task InsertDiscountAsync(WebshopClient.OrderServiceReference.ServiceDiscount discount);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/DeleteDiscount", ReplyAction="http://tempuri.org/ICustomerOrderService/DeleteDiscountResponse")]
-        int DeleteDiscount(int discountId);
+        int DeleteDiscount(string discountCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/DeleteDiscount", ReplyAction="http://tempuri.org/ICustomerOrderService/DeleteDiscountResponse")]
-        System.Threading.Tasks.Task<int> DeleteDiscountAsync(int discountId);
+        System.Threading.Tasks.Task<int> DeleteDiscountAsync(string discountCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetDiscountByCode", ReplyAction="http://tempuri.org/ICustomerOrderService/GetDiscountByCodeResponse")]
         int GetDiscountByCode(string code);
@@ -510,6 +837,12 @@ namespace WebshopClient.OrderServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetPaymentMethods", ReplyAction="http://tempuri.org/ICustomerOrderService/GetPaymentMethodsResponse")]
         System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServicePaymentMethod[]> GetPaymentMethodsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/FinishCheckout", ReplyAction="http://tempuri.org/ICustomerOrderService/FinishCheckoutResponse")]
+        bool FinishCheckout(WebshopClient.OrderServiceReference.ServiceCustomer customer, WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/FinishCheckout", ReplyAction="http://tempuri.org/ICustomerOrderService/FinishCheckoutResponse")]
+        System.Threading.Tasks.Task<bool> FinishCheckoutAsync(WebshopClient.OrderServiceReference.ServiceCustomer customer, WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -635,12 +968,12 @@ namespace WebshopClient.OrderServiceReference {
             return base.Channel.InsertDiscountAsync(discount);
         }
         
-        public int DeleteDiscount(int discountId) {
-            return base.Channel.DeleteDiscount(discountId);
+        public int DeleteDiscount(string discountCode) {
+            return base.Channel.DeleteDiscount(discountCode);
         }
         
-        public System.Threading.Tasks.Task<int> DeleteDiscountAsync(int discountId) {
-            return base.Channel.DeleteDiscountAsync(discountId);
+        public System.Threading.Tasks.Task<int> DeleteDiscountAsync(string discountCode) {
+            return base.Channel.DeleteDiscountAsync(discountCode);
         }
         
         public int GetDiscountByCode(string code) {
@@ -657,6 +990,14 @@ namespace WebshopClient.OrderServiceReference {
         
         public System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServicePaymentMethod[]> GetPaymentMethodsAsync() {
             return base.Channel.GetPaymentMethodsAsync();
+        }
+        
+        public bool FinishCheckout(WebshopClient.OrderServiceReference.ServiceCustomer customer, WebshopClient.OrderServiceReference.ServiceCustomerOrder order) {
+            return base.Channel.FinishCheckout(customer, order);
+        }
+        
+        public System.Threading.Tasks.Task<bool> FinishCheckoutAsync(WebshopClient.OrderServiceReference.ServiceCustomer customer, WebshopClient.OrderServiceReference.ServiceCustomerOrder order) {
+            return base.Channel.FinishCheckoutAsync(customer, order);
         }
     }
 }
