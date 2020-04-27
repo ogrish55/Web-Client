@@ -119,30 +119,15 @@ namespace WebshopClient.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.Order.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
                 model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
-                using (CustomerServiceClient customer = new CustomerServiceClient())
                 using (CustomerOrderServiceClient order = new CustomerOrderServiceClient())
-                using (ProductLineServiceClient productLine = new ProductLineServiceClient())
                 {
-                    int customerID = customer.InsertCustomer(new ConvertDataModel().ConvertToServiceCustomer(model.Customer));
-                    model.Order.CustomerId = customerID;
-                    {
-                        int orderID = order.InsertOrder(new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order));
-                        model.Order.OrderId = orderID;
-                        {
-                            decimal totalPrice = 0;
-                            foreach (var item in model.ShoppingCart)
-                            {
-                                totalPrice += item.SubTotal;
-                                item.OrderId = orderID;
-                                productLine.InsertProductLine(new ConvertProductLine().ConvertToServiceProductLine(item));
-                            }
-                            model.Order.FinalPrice = totalPrice;
-                            order.UpdateOrder(new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order));
-                        }
-                    }
+                    OrderServiceReference.ServiceCustomer customerToInsert = new ConvertDataModel().ConvertToServiceCustomer(model.Customer);
+                    ServiceCustomerOrder orderToInsert = new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order);
+                    order.FinishCheckout(customerToInsert, orderToInsert);
                 }
-
+            
                 return RedirectToAction("Index", "Home");
             }
             else

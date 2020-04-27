@@ -12,12 +12,12 @@ namespace WebshopClient.Utilities
 {
     interface IConvertModel
     {
-        Product ConvertFromServiceProduct(ServiceProduct serviceProduct);
-        ServiceProduct ConvertToServiceProduct(Product webshopProduct);
+        Product ConvertFromServiceProduct(ProductLineServiceReference.ServiceProduct serviceProduct);
+        ProductLineServiceReference.ServiceProduct ConvertToServiceProduct(Product webshopProduct);
         Order ConvertFromServiceOrder(ServiceCustomerOrder serviceOrder);
         ServiceCustomerOrder ConvertToServiceCustomerOrder(Order webshopOrder);
-        Customer ConvertFromServiceCustomer(ServiceCustomer serviceCustomer);
-        ServiceCustomer ConvertToServiceCustomer(Customer webshopCustomer);
+        Customer ConvertFromServiceCustomer(CustomerServiceReference.ServiceCustomer serviceCustomer);
+        OrderServiceReference.ServiceCustomer ConvertToServiceCustomer(Customer webshopCustomer);
         Discount ConvertFromServiceDiscount(ServiceDiscount serviceDiscount);
         ServiceDiscount ConvertToServiceDiscount(Discount webshopDiscount);
     }

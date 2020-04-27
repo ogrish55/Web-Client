@@ -154,7 +154,7 @@
   <xs:element name="DeleteDiscount">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="discountId" type="xs:int" />
+        <xs:element minOccurs="0" name="discountCode" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -188,6 +188,21 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Service.Model" minOccurs="0" name="GetPaymentMethodsResult" nillable="true" type="q11:ArrayOfServicePaymentMethod" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FinishCheckout">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Service.Model" minOccurs="0" name="customer" nillable="true" type="q12:ServiceCustomer" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service.Model" minOccurs="0" name="order" nillable="true" type="q13:ServiceCustomerOrder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FinishCheckoutResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FinishCheckoutResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
