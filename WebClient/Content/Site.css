@@ -69,3 +69,9 @@ textarea {
 #discountCodeBtn {
     margin-top: 12px;
 }
+
+.list-group {
+    margin-left: -300px;
+    margin-top: -20px;
+    width: 300px;
+}
