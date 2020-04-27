@@ -69,3 +69,13 @@ textarea {
 #discountCodeBtn {
     margin-top: 12px;
 }
+
+#pricebtn {
+   margin-left: -150px;
+    position: absolute;
+}
+
+#pricefiltertext {
+    margin-left: -150px;
+    position: absolute;
+}

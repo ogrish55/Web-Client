@@ -5,11 +5,35 @@
     Layout = "~/Views/Shared/_LayoutIndex.cshtml";
 }
 
-
 <div class="page-header">
     <h1>Populære produkter</h1>
 </div>
+<div class="text-left col-md-1">
+    <h4 id="pricefiltertext">Pris</h4> <br />
+
+        <button id="pricebtn" type="reset" class="btn btn-link">Alle</button> <br />
+    
+    @using (Html.BeginForm("ProductsInPriceRange", "Home", new { min = 500, max = 1000 }))
+    {
+        <button id="pricebtn" type="submit" class="btn btn-link">500  kr. - 1.000 kr.</button> <br />
+    }
+    @using (Html.BeginForm("ProductsInPriceRange", "Home", new { min = 1000, max = 2000 }))
+    {
+        <button id="pricebtn" type="submit" class="btn btn-link">1.000 kr. - 2.000 kr.</button> <br />
+    }
+    @using (Html.BeginForm("ProductsInPriceRange", "Home", new { min = 2000, max = 5000 }))
+    {
+        <button id="pricebtn" type="submit" class="btn btn-link">2000 kr. - 5000 kr.</button> <br />
+    }
+    @using (Html.BeginForm("ProductsInPriceRange", "Home", new { min = 5000, max = 1000000 }))
+    {
+        <button id="pricebtn" type="submit" class="btn btn-link">5.000 kr. < </button>
+    }
+
+</div>
+
 <div class="row" id="rowProducts">
+
     @foreach (var product in Model)
     {
         <div class="col-md-4">
@@ -36,4 +60,6 @@
             </div>
         </div>
     }
+
 </div>
+
