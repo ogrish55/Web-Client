@@ -111,14 +111,19 @@
                 </li>
             </ul>
 
-            <form class="card p-2">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Rabatkode">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary" id="discountCodeBtn">Tilføj</button>
+            @using (Html.BeginForm("AddDiscountCode", "ShoppingCart", FormMethod.Post))
+            {
+                <form class="card p-2">
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Discount.DiscountCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @*<input type="text" class="form-control" placeholder="Rabatkode">*@
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-secondary" id="discountCodeBtn">Tilføj</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+                @Html.ValidationMessage("DiscountCodeError")
+            }
         </div>
     </div>
 }

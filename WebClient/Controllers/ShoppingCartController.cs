@@ -8,6 +8,7 @@ using WebshopClient.CustomerServiceReference;
 using WebshopClient.OrderServiceReference;
 using WebshopClient.ProductLineServiceReference;
 using WebshopClient.Utilities;
+using System.Diagnostics;
 
 namespace WebshopClient.Controllers
 {
@@ -145,6 +146,38 @@ namespace WebshopClient.Controllers
             }
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult AddDiscountCode(CheckoutViewModel model)
+        {
+            //productLineList = (List<ProductLine>)Session["shoppingCart"];
+            //Debug.WriteLine("ll" + model.Discount.DiscountCode);
+            string code = model.Discount.DiscountCode;
+
+            if (String.IsNullOrEmpty(code))
+            {
+                Debug.WriteLine("Feltet et tomt");
+                ModelState.AddModelError("DiscountCodeError", "Den intastede rabat kode er ikke gyldig.");
+            }
+            else
+            {
+                using(CustomerOrderServiceClient order = new CustomerOrderServiceClient())
+                {
+                    int discountAmount = order.GetDiscountByCode(code);
+                    Debug.WriteLine("ho" + discountAmount);
+                }
+                using(ProductLineServiceClient productLine = new ProductLineServiceClient())
+                {
+                    foreach (var item in model.ShoppingCart)
+                    {
+                        item.SubTotal *= model.Discount.DiscountAmount;
+                        Debug.WriteLine(item.SubTotal);
+                    }
+                }
+            }
+
+            return RedirectToAction("CheckOut", "ShoppingCart");
         }
 
         public ActionResult IncreaseAmount(int id)
