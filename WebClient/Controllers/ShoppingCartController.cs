@@ -150,8 +150,7 @@ namespace WebshopClient.Controllers
         [HttpPost]
         public ActionResult AddDiscountCode(CheckoutViewModel model)
         {
-            //productLineList = (List<ProductLine>)Session["shoppingCart"];
-            //Debug.WriteLine("ll" + model.Discount.DiscountCode);
+            model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
             string code = model.Discount.DiscountCode;
 
             if (String.IsNullOrEmpty(code))
@@ -163,15 +162,14 @@ namespace WebshopClient.Controllers
             {
                 using(CustomerOrderServiceClient order = new CustomerOrderServiceClient())
                 {
-                    int discountAmount = order.GetDiscountByCode(code);
-                    Debug.WriteLine("ho" + discountAmount);
+                    decimal discountAmount = order.GetDiscountByCode(code);
+                    model.Discount.DiscountAmount = discountAmount;
                 }
                 using(ProductLineServiceClient productLine = new ProductLineServiceClient())
                 {
                     foreach (var item in model.ShoppingCart)
                     {
                         item.SubTotal *= model.Discount.DiscountAmount;
-                        Debug.WriteLine(item.SubTotal);
                     }
                 }
             }
