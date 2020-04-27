@@ -13,6 +13,7 @@
   <xs:complexType name="ServiceProduct">
     <xs:sequence>
       <xs:element minOccurs="0" name="AmountOnStock" type="xs:int" />
+      <xs:element minOccurs="0" name="Brand" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Price" type="xs:decimal" />

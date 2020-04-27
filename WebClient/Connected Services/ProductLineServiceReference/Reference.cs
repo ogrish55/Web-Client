@@ -135,6 +135,9 @@ namespace WebshopClient.ProductLineServiceReference {
         private int AmountOnStockField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BrandField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -165,6 +168,19 @@ namespace WebshopClient.ProductLineServiceReference {
                 if ((this.AmountOnStockField.Equals(value) != true)) {
                     this.AmountOnStockField = value;
                     this.RaisePropertyChanged("AmountOnStock");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Brand {
+            get {
+                return this.BrandField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BrandField, value) != true)) {
+                    this.BrandField = value;
+                    this.RaisePropertyChanged("Brand");
                 }
             }
         }

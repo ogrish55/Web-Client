@@ -19,6 +19,7 @@ namespace WebshopClient.Utilities
             productToReturn.Description = serviceProduct.Description;
             productToReturn.ProductId = serviceProduct.ProductId;
             productToReturn.AmountOnStock = serviceProduct.AmountOnStock;
+            productToReturn.Brand = serviceProduct.Brand;
 
             return productToReturn;
         }
