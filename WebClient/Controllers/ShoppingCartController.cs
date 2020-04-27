@@ -8,6 +8,7 @@ using WebshopClient.CustomerServiceReference;
 using WebshopClient.OrderServiceReference;
 using WebshopClient.ProductLineServiceReference;
 using WebshopClient.Utilities;
+using System.Diagnostics;
 
 namespace WebshopClient.Controllers
 {
@@ -119,30 +120,15 @@ namespace WebshopClient.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.Order.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
                 model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
-                using (CustomerServiceClient customer = new CustomerServiceClient())
                 using (CustomerOrderServiceClient order = new CustomerOrderServiceClient())
-                using (ProductLineServiceClient productLine = new ProductLineServiceClient())
                 {
-                    int customerID = customer.InsertCustomer(new ConvertDataModel().ConvertToServiceCustomer(model.Customer));
-                    model.Order.CustomerId = customerID;
-                    {
-                        int orderID = order.InsertOrder(new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order));
-                        model.Order.OrderId = orderID;
-                        {
-                            decimal totalPrice = 0;
-                            foreach (var item in model.ShoppingCart)
-                            {
-                                totalPrice += item.SubTotal;
-                                item.OrderId = orderID;
-                                productLine.InsertProductLine(new ConvertProductLine().ConvertToServiceProductLine(item));
-                            }
-                            model.Order.FinalPrice = totalPrice;
-                            order.UpdateOrder(new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order));
-                        }
-                    }
+                    OrderServiceReference.ServiceCustomer customerToInsert = new ConvertDataModel().ConvertToServiceCustomer(model.Customer);
+                    ServiceCustomerOrder orderToInsert = new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order);
+                    order.FinishCheckout(customerToInsert, orderToInsert);
                 }
-
+            
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -159,6 +145,38 @@ namespace WebshopClient.Controllers
                 model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
                 return View(model);
             }
+        }
+
+        [HttpPost]
+        public ActionResult AddDiscountCode(CheckoutViewModel model)
+        {
+            //productLineList = (List<ProductLine>)Session["shoppingCart"];
+            //Debug.WriteLine("ll" + model.Discount.DiscountCode);
+            string code = model.Discount.DiscountCode;
+
+            if (String.IsNullOrEmpty(code))
+            {
+                Debug.WriteLine("Feltet et tomt");
+                ModelState.AddModelError("DiscountCodeError", "Den intastede rabat kode er ikke gyldig.");
+            }
+            else
+            {
+                using(CustomerOrderServiceClient order = new CustomerOrderServiceClient())
+                {
+                    int discountAmount = order.GetDiscountByCode(code);
+                    Debug.WriteLine("ho" + discountAmount);
+                }
+                using(ProductLineServiceClient productLine = new ProductLineServiceClient())
+                {
+                    foreach (var item in model.ShoppingCart)
+                    {
+                        item.SubTotal *= model.Discount.DiscountAmount;
+                        Debug.WriteLine(item.SubTotal);
+                    }
+                }
+            }
+
+            return RedirectToAction("CheckOut", "ShoppingCart");
         }
 
         public ActionResult IncreaseAmount(int id)

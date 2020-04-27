@@ -11,9 +11,9 @@ namespace WebshopClient.Model
         public string Status { get; set; }
         public DateTime DateOrder { get; set; }
         public int CustomerId { get; set; }
-        public int DiscountId { get; set; }
+        public string DiscountCode { get; set; }
         public int PaymentMethod { get; set; }
-
+        public List<ProductLine> ShoppingCart;
         public int OrderId { get; set; }
 
         public Order()

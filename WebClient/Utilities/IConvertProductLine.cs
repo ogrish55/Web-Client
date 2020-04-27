@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebshopClient.Model;
-using WebshopClient.ProductLineServiceReference;
+using WebshopClient.OrderServiceReference;
 
 namespace WebshopClient.Utilities
 {

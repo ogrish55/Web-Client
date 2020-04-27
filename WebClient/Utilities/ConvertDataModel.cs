@@ -11,7 +11,7 @@ namespace WebshopClient.Utilities
 {
     public class ConvertDataModel : IConvertModel
     {
-        public Product ConvertFromServiceProduct(ServiceProduct serviceProduct)
+        public Product ConvertFromServiceProduct(ProductLineServiceReference.ServiceProduct serviceProduct)
         {
             Product productToReturn = new Product();
             productToReturn.Name = serviceProduct.Name;
@@ -24,9 +24,9 @@ namespace WebshopClient.Utilities
             return productToReturn;
         }
 
-        public ServiceProduct ConvertToServiceProduct(Product webshopProduct)
+        public WebshopClient.ProductLineServiceReference.ServiceProduct ConvertToServiceProduct(Product webshopProduct)
         {
-            ServiceProduct productToReturn = new ServiceProduct();
+            WebshopClient.ProductLineServiceReference.ServiceProduct productToReturn = new WebshopClient.ProductLineServiceReference.ServiceProduct();
             productToReturn.ProductId = webshopProduct.ProductId;
             productToReturn.Name = webshopProduct.Name;
             productToReturn.Price = webshopProduct.Price;
@@ -43,7 +43,7 @@ namespace WebshopClient.Utilities
             orderToReturn.Status = serviceOrder.Status;
             orderToReturn.DateOrder = serviceOrder.DateOrder;
             orderToReturn.CustomerId = serviceOrder.CustomerId;
-            orderToReturn.DiscountId = serviceOrder.DiscountId;
+            orderToReturn.DiscountCode = serviceOrder.DiscountCode;
             orderToReturn.PaymentMethod = serviceOrder.PaymentMethod;
 
             return orderToReturn;
@@ -56,14 +56,21 @@ namespace WebshopClient.Utilities
             orderToReturn.Status = webshopOrder.Status;
             orderToReturn.DateOrder = webshopOrder.DateOrder;
             orderToReturn.CustomerId = webshopOrder.CustomerId;
-            orderToReturn.DiscountId = webshopOrder.DiscountId;
+            orderToReturn.DiscountCode = webshopOrder.DiscountCode;
             orderToReturn.PaymentMethod = webshopOrder.PaymentMethod;
             orderToReturn.OrderId = webshopOrder.OrderId;
+            orderToReturn.ShoppingCart = new OrderServiceReference.ServiceProductLine[webshopOrder.ShoppingCart.Count];
 
+            for(int i = 0; i < webshopOrder.ShoppingCart.Count; i++)
+            {
+                orderToReturn.ShoppingCart[i] = new ConvertProductLine().ConvertToServiceProductLine(webshopOrder.ShoppingCart[i]);
+            }
+            
+            
             return orderToReturn;
         }
 
-        public Customer ConvertFromServiceCustomer(ServiceCustomer serviceCustomer)
+        public Customer ConvertFromServiceCustomer(CustomerServiceReference.ServiceCustomer serviceCustomer)
         {
             Customer customerToReturn = new Customer();
             customerToReturn.CustomerId = serviceCustomer.CustomerId;
@@ -75,9 +82,9 @@ namespace WebshopClient.Utilities
             return customerToReturn;
         }
 
-        public ServiceCustomer ConvertToServiceCustomer(Customer webshopCustomer)
+        public OrderServiceReference.ServiceCustomer ConvertToServiceCustomer(Customer webshopCustomer)
         {
-            ServiceCustomer customerToReturn = new ServiceCustomer();
+            OrderServiceReference.ServiceCustomer customerToReturn = new OrderServiceReference.ServiceCustomer();
             customerToReturn.CustomerId = webshopCustomer.CustomerId;
             customerToReturn.Name = webshopCustomer.Name;
             customerToReturn.Address = webshopCustomer.Address;
