@@ -70,6 +70,17 @@ textarea {
     margin-top: 12px;
 }
 
+
+#pricebtn {
+   margin-left: -150px;
+    position: absolute;
+}
+
+#pricefiltertext {
+    margin-left: -150px;
+    position: absolute;
+}
+
 .list-group {
     margin-left: -300px;
     margin-top: -40px;
@@ -78,4 +89,4 @@ textarea {
 
 .field-validation-valid {
     display: none;
-}
+

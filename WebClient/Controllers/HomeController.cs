@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,7 +13,7 @@ namespace WebClient.Controllers
     public class HomeController : Controller
     {
         IConvertModel convertModel = new ConvertDataModel();
-        public ActionResult Index()
+        public ActionResult Index(List<Product> filteredProducts)
         {
             List<Product> clientProducts = new List<Product>();
 
@@ -29,6 +30,29 @@ namespace WebClient.Controllers
                 }
             }
             return View(clientProducts);
+        }
+
+        public ActionResult ProductsInPriceRange(int min, int max)
+        {
+            Debug.WriteLine("min: " + min + " max: " + max);
+            List<Product> priceRangeProducts = new List<Product>();
+
+            using (ProductLineServiceClient productServiceProxy = new ProductLineServiceClient())
+            {
+                List<ServiceProduct> serviceProducts = new List<ServiceProduct>();
+                serviceProducts = productServiceProxy.GetAllProducts().ToList();
+                int i = 0;
+                while (i < serviceProducts.Count())
+                {
+                    if (serviceProducts[i].Price >= min && serviceProducts[i].Price <= max)
+                    {
+                        priceRangeProducts.Add(convertModel.ConvertFromServiceProduct(serviceProducts[i]));
+                    }
+                    i++;
+                }
+            }
+            
+            return View("Index",priceRangeProducts);
         }
 
         public ActionResult About()

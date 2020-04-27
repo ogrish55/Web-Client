@@ -43,6 +43,12 @@ namespace WebClient
                 url: "ShoppingCart/Delete",
                 defaults: new { controller = "ShoppingCart", action = "Delete", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "PriceRange",
+                url: "Home/ProductsInPriceRange",
+                defaults: new { controller = "Home", action = "ProductsInPriceRange"}
+            );
         }
     }
 }
