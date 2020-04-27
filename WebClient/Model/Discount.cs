@@ -9,6 +9,6 @@ namespace WebshopClient.Model
     public class Discount
     {
         public string DiscountCode { get; set; }
-        public int DiscountAmount { get; set; }
+        public decimal DiscountAmount { get; set; }
     }
 }
