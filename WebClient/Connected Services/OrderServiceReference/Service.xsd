@@ -175,7 +175,7 @@
   <xs:element name="GetDiscountByCodeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetDiscountByCodeResult" type="xs:int" />
+        <xs:element minOccurs="0" name="GetDiscountByCodeResult" type="xs:decimal" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

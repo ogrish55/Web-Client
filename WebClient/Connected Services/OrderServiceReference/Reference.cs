@@ -292,6 +292,9 @@ namespace WebshopClient.OrderServiceReference {
         private int AmountOnStockField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BrandField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -322,6 +325,19 @@ namespace WebshopClient.OrderServiceReference {
                 if ((this.AmountOnStockField.Equals(value) != true)) {
                     this.AmountOnStockField = value;
                     this.RaisePropertyChanged("AmountOnStock");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Brand {
+            get {
+                return this.BrandField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BrandField, value) != true)) {
+                    this.BrandField = value;
+                    this.RaisePropertyChanged("Brand");
                 }
             }
         }
@@ -523,7 +539,7 @@ namespace WebshopClient.OrderServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DiscountAmountField;
+        private decimal DiscountAmountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DiscountCodeField;
@@ -539,7 +555,7 @@ namespace WebshopClient.OrderServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DiscountAmount {
+        public decimal DiscountAmount {
             get {
                 return this.DiscountAmountField;
             }
@@ -827,10 +843,10 @@ namespace WebshopClient.OrderServiceReference {
         System.Threading.Tasks.Task<int> DeleteDiscountAsync(string discountCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetDiscountByCode", ReplyAction="http://tempuri.org/ICustomerOrderService/GetDiscountByCodeResponse")]
-        int GetDiscountByCode(string code);
+        decimal GetDiscountByCode(string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetDiscountByCode", ReplyAction="http://tempuri.org/ICustomerOrderService/GetDiscountByCodeResponse")]
-        System.Threading.Tasks.Task<int> GetDiscountByCodeAsync(string code);
+        System.Threading.Tasks.Task<decimal> GetDiscountByCodeAsync(string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/GetPaymentMethods", ReplyAction="http://tempuri.org/ICustomerOrderService/GetPaymentMethodsResponse")]
         WebshopClient.OrderServiceReference.ServicePaymentMethod[] GetPaymentMethods();
@@ -976,11 +992,11 @@ namespace WebshopClient.OrderServiceReference {
             return base.Channel.DeleteDiscountAsync(discountCode);
         }
         
-        public int GetDiscountByCode(string code) {
+        public decimal GetDiscountByCode(string code) {
             return base.Channel.GetDiscountByCode(code);
         }
         
-        public System.Threading.Tasks.Task<int> GetDiscountByCodeAsync(string code) {
+        public System.Threading.Tasks.Task<decimal> GetDiscountByCodeAsync(string code) {
             return base.Channel.GetDiscountByCodeAsync(code);
         }
         
