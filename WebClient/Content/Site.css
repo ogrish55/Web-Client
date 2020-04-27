@@ -43,9 +43,6 @@ textarea {
     background-color: Black;
 }
 
-.card-text {
-    height: 35px;
-}
 
 #h1Jumbo {
     color: white;
@@ -71,16 +68,6 @@ textarea {
 }
 
 
-#pricebtn {
-   margin-left: -150px;
-    position: absolute;
-}
-
-#pricefiltertext {
-    margin-left: -150px;
-    position: absolute;
-}
-
 .list-group {
     margin-left: -300px;
     margin-top: -40px;
@@ -89,4 +76,13 @@ textarea {
 
 .field-validation-valid {
     display: none;
+}
 
+#filterList {
+    margin-right: 80px;
+}
+
+#brandFilterText {
+    margin-top: 30px;
+    margin-bottom: -10px;
+}

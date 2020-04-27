@@ -9,11 +9,15 @@
     <h1>Populære produkter</h1>
 </div>
 
-<div class="text-left col-md-1">
+<div class="col-md-1" id="filterList">
+
     <h4 id="pricefiltertext">Pris</h4> <br />
 
-        <button id="pricebtn" type="reset" class="btn btn-link">Alle</button> <br />
-    
+    @using (Html.BeginForm("Index", "Home"))
+    {
+        <button id="pricebtn" type="submit" class="btn btn-link">Alle</button> <br />
+    }
+
     @using (Html.BeginForm("ProductsInPriceRange", "Home", new { min = 500, max = 1000 }))
     {
         <button id="pricebtn" type="submit" class="btn btn-link">500  kr. - 1.000 kr.</button> <br />
@@ -31,18 +35,23 @@
         <button id="pricebtn" type="submit" class="btn btn-link">5.000 kr. < </button>
     }
 
-</div>
-
-<div class="list-group col-md-4">
-    <h4>Producenter</h4>
+    <h4 id="brandFilterText">Producent</h4> <br />
+    @using (Html.BeginForm("Index", "Home"))
+    {
+        <button id="pricebtn" type="submit" class="btn btn-link">Alle</button> <br />
+    }
     @foreach (var product in Model)
     {
-<button type="button" class="list-group-item list-group-item-action">@product.Brand</button>
+
+        using (Html.BeginForm("ProductsBasedOnBrand", "Home", new { brandName = product.Brand }))
+        {
+            <button id="pricebtn" type="submit" class="btn btn-link">@product.Brand</button> <br />
+        }
     }
+
 </div>
 
-<div class="row" id="rowProducts">
-
+<div class="col-md-10" id="rowProducts">
     @foreach (var product in Model)
     {
         <div class="col-md-4">
@@ -71,4 +80,16 @@
     }
 
 </div>
+
+</div>
+
+
+@*<div class="list-group col-md-4">
+        <h4>Producenter</h4>
+        @foreach (var product in Model)
+        {
+    <button type="button" class="list-group-item list-group-item-action">@product.Brand</button>
+        }
+    </div>*@
+
 
