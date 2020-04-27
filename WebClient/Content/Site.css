@@ -72,6 +72,10 @@ textarea {
 
 .list-group {
     margin-left: -300px;
-    margin-top: -20px;
+    margin-top: -40px;
     width: 300px;
+}
+
+.field-validation-valid {
+    display: none;
 }
