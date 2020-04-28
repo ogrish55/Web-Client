@@ -51,8 +51,8 @@ namespace WebClient.Controllers
                     i++;
                 }
             }
-            
-            return View("Index",priceRangeProducts);
+
+            return View("Index", priceRangeProducts);
         }
 
         public ActionResult ProductsBasedOnBrand(string brandName)
