@@ -121,13 +121,13 @@
                 <form class="card p-2">
                     <div class="input-group">
                         @Html.EditorFor(model => model.Discount.DiscountCode, new { htmlAttributes = new { @class = "form-control" } })
-                        @*<input type="text" class="form-control" placeholder="Rabatkode">*@
+                        @Html.ValidationMessageFor(model => model.Discount.DiscountCode, "", new { @class = "text-danger" })
+                        @*@Html.ValidationMessage("DiscountCodeError")*@
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-secondary" id="discountCodeBtn">Tilføj</button>
                         </div>
                     </div>
                 </form>
-                @Html.ValidationMessage("DiscountCodeError")
             }
         </div>
     </div>
