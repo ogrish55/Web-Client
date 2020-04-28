@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using WebshopClient.CustomerServiceReference;
 using WebshopClient.Model;
 using WebshopClient.OrderServiceReference;
@@ -61,12 +62,12 @@ namespace WebshopClient.Utilities
             orderToReturn.OrderId = webshopOrder.OrderId;
             orderToReturn.ShoppingCart = new OrderServiceReference.ServiceProductLine[webshopOrder.ShoppingCart.Count];
 
-            for(int i = 0; i < webshopOrder.ShoppingCart.Count; i++)
+            for (int i = 0; i < webshopOrder.ShoppingCart.Count; i++)
             {
                 orderToReturn.ShoppingCart[i] = new ConvertProductLine().ConvertToServiceProductLine(webshopOrder.ShoppingCart[i]);
             }
-            
-            
+
+
             return orderToReturn;
         }
 
@@ -120,5 +121,26 @@ namespace WebshopClient.Utilities
 
             return serviceDiscountToReturn;
         }
+
+
+        //Remember to uncomment
+
+        //public Review ConvertFromServiceReviewToClient(ServiceReview serviceReview)
+        //{
+        //    Review review = new Review();
+        //    review.Comment = serviceReview.Comment;
+        //    review.Rating = serviceReview.Rating;
+
+        //    return review;
+        //}
+
+        //public ServiceReview ConvertFromClientReviewToService(Review review)
+        //{
+        //    ServiceReview serviceReview = new ServiceReview();
+        //    serviceReview.Comment = review.Comment;
+        //    Service.Rating = review.Rating;
+
+        //    return serviceReview;
+        //}
     }
 }

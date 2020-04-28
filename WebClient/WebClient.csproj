@@ -157,6 +157,7 @@
     <Compile Include="Model\PaymentMethod.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductLine.cs" />
+    <Compile Include="Model\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ConvertDataModel.cs" />
     <Compile Include="Utilities\ConvertDeliveryDescription.cs" />
