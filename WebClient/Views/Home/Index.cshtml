@@ -42,7 +42,6 @@
     }
     @foreach (var product in Model)
     {
-
         using (Html.BeginForm("ProductsBasedOnBrand", "Home", new { brandName = product.Brand }))
         {
             <button id="pricebtn" type="submit" class="btn btn-link">@product.Brand</button> <br />
