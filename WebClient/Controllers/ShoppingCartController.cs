@@ -153,23 +153,22 @@ namespace WebshopClient.Controllers
             model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
             string code = model.Discount.DiscountCode;
 
-            if (String.IsNullOrEmpty(code))
+            if (ModelState.IsValid)
             {
-                Debug.WriteLine("Feltet et tomt");
-                ModelState.AddModelError("DiscountCodeError", "Den intastede rabat kode er ikke gyldig.");
-            }
-            else
-            {
-                using(CustomerOrderServiceClient order = new CustomerOrderServiceClient())
+                using (CustomerOrderServiceClient order = new CustomerOrderServiceClient())
                 {
                     decimal discountAmount = order.GetDiscountByCode(code);
                     model.Discount.DiscountAmount = discountAmount;
                 }
-                using(ProductLineServiceClient productLine = new ProductLineServiceClient())
+                if (model.Discount.DiscountAmount != 0 && Session["DiscountCode"] == null)
                 {
-                    foreach (var item in model.ShoppingCart)
+                    Session["DiscountCode"] = model.Discount.DiscountAmount;
+                    using (ProductLineServiceClient productline = new ProductLineServiceClient())
                     {
-                        item.SubTotal *= model.Discount.DiscountAmount;
+                        foreach (var item in model.ShoppingCart)
+                        {
+                            item.SubTotal *= model.Discount.DiscountAmount;
+                        }
                     }
                 }
             }
