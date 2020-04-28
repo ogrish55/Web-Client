@@ -13,5 +13,6 @@ namespace WebshopClient.Model
         public string Description { get; set; }
         public int AmountOnStock { get; set; }
         public string Brand { get; set; }
+        public int Category { get; set; }
     }
 }

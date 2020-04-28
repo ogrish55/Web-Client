@@ -40,13 +40,20 @@
     {
         <button id="pricebtn" type="submit" class="btn btn-link">Alle</button> <br />
     }
-    @foreach (var product in Model)
+
+    @using (Html.BeginForm("ProductsBasedOnBrand", "Home", new { brandName = "ASUS" }))
     {
-        using (Html.BeginForm("ProductsBasedOnBrand", "Home", new { brandName = product.Brand }))
-        {
-            <button id="pricebtn" type="submit" class="btn btn-link">@product.Brand</button> <br />
-        }
+        <button id="pricebtn" type="submit" class="btn btn-link">Asus</button> <br />
     }
+    @using (Html.BeginForm("ProductsBasedOnBrand", "Home", new { brandName = "AMD" }))
+    {
+        <button id="pricebtn" type="submit" class="btn btn-link">AMD</button> <br />
+    }
+    @using (Html.BeginForm("ProductsBasedOnBrand", "Home", new { brandName = "Intel" }))
+    {
+        <button id="pricebtn" type="submit" class="btn btn-link">Intel</button> <br />
+    }
+
 
 </div>
 

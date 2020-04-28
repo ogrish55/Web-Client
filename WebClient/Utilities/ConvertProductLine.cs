@@ -41,6 +41,8 @@ namespace WebshopClient.Utilities
             productToReturn.Description = serviceProduct.Description;
             productToReturn.ProductId = serviceProduct.ProductId;
             productToReturn.AmountOnStock = serviceProduct.AmountOnStock;
+            productToReturn.Brand = serviceProduct.Brand;
+            productToReturn.Category = serviceProduct.Category;
 
             return productToReturn;
         }
@@ -53,6 +55,8 @@ namespace WebshopClient.Utilities
             productToReturn.Price = webshopProduct.Price;
             productToReturn.Description = webshopProduct.Description;
             productToReturn.AmountOnStock = webshopProduct.AmountOnStock;
+            productToReturn.Brand = webshopProduct.Brand;
+            productToReturn.Category = webshopProduct.Category;
 
             return productToReturn;
         }
