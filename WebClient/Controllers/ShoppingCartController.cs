@@ -126,6 +126,10 @@ namespace WebshopClient.Controllers
                 {
                     OrderServiceReference.ServiceCustomer customerToInsert = new ConvertDataModel().ConvertToServiceCustomer(model.Customer);
                     ServiceCustomerOrder orderToInsert = new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order);
+                    if (Session["DiscountCode"] != null)
+                    {
+                        orderToInsert.DiscountCode = (string)Session["DiscountCode"];
+                    }
                     order.FinishCheckout(customerToInsert, orderToInsert);
                 }
             
@@ -160,9 +164,10 @@ namespace WebshopClient.Controllers
                     decimal discountAmount = order.GetDiscountByCode(code);
                     model.Discount.DiscountAmount = discountAmount;
                 }
-                if (model.Discount.DiscountAmount != 0 && Session["DiscountCode"] == null)
+                if (model.Discount.DiscountAmount != 0 && Session["DiscountCodeAmount"] == null)
                 {
-                    Session["DiscountCode"] = model.Discount.DiscountAmount;
+                    //model.Order.DiscountCode = code;
+                    Session["DiscountCodeAmount"] = model.Discount.DiscountAmount;
                     using (ProductLineServiceClient productline = new ProductLineServiceClient())
                     {
                         foreach (var item in model.ShoppingCart)
@@ -170,6 +175,7 @@ namespace WebshopClient.Controllers
                             item.SubTotal *= model.Discount.DiscountAmount;
                         }
                     }
+                    Session["DiscountCode"] = code;
                 }
             }
             return RedirectToAction("CheckOut", "ShoppingCart");
