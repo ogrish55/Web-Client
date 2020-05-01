@@ -93,7 +93,7 @@ namespace WebshopClient.Controllers
         }
 
         public ActionResult EmptyShoppingCart()
-        { 
+        {
             Session["shoppingCart"] = null;
             return RedirectToAction("Order", "ShoppingCart");
         }
@@ -103,7 +103,7 @@ namespace WebshopClient.Controllers
             checkoutViewModel = new CheckoutViewModel();
             checkoutViewModel.DeliveryDescription = new DeliveryDescription();
             checkoutViewModel.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
-            using(CustomerOrderServiceClient proxy = new CustomerOrderServiceClient())
+            using (CustomerOrderServiceClient proxy = new CustomerOrderServiceClient())
             {
                 List<PaymentMethod> listToAdd = new List<PaymentMethod>();
                 foreach (var item in proxy.GetPaymentMethods())
@@ -135,7 +135,7 @@ namespace WebshopClient.Controllers
                 }
                 if (success)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("CheckOutSuccessful", "ShoppingCart");
                 }
                 else
                 {
@@ -245,6 +245,12 @@ namespace WebshopClient.Controllers
             return RedirectToAction("Order");
         }
 
+        public ActionResult CheckOutSuccessful()
+        {
+            string random = Guid.NewGuid().ToString();
+            Session["shoppingCart"] = null;
+            return View((object)random);
+        }
     }
 }
 

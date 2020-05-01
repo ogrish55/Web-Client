@@ -85,6 +85,10 @@ textarea {
     margin-bottom: -10px;
 }
 
+#success {
+margin-bottom: 20px;
+}
+
 .myDivClass {
     display: flex;
     flex-direction: column;
@@ -104,3 +108,4 @@ textarea {
     width: 100px;
     font-size: 40px !important;
 }
+
