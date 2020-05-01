@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div class="myDivClass">
+        <h1 class="ErrorClass">
+            Fejl
+        </h1>
+        <br />
+        <h2>Der er desværre sket en fejl...</h2>
+
+        @using (Html.BeginForm("Index", "Home"))
+        {
+            <input type="submit" value="OK" class="btn btn-success ErrorButtonClass" />
+        }
+    </div>
+</body>
+</html>
