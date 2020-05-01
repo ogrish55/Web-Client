@@ -120,6 +120,7 @@ namespace WebshopClient.Controllers
         {
             if (ModelState.IsValid)
             {
+                bool success = false;
                 model.Order.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
                 model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
                 using (CustomerOrderServiceClient order = new CustomerOrderServiceClient())
@@ -130,10 +131,16 @@ namespace WebshopClient.Controllers
                     {
                         orderToInsert.DiscountCode = (string)Session["DiscountCode"];
                     }
-                    order.FinishCheckout(customerToInsert, orderToInsert);
+                    success = order.FinishCheckout(customerToInsert, orderToInsert);
                 }
-
-                return RedirectToAction("CheckOutSuccessful", "ShoppingCart");
+                if (success)
+                {
+                    return RedirectToAction("CheckOutSuccessful", "ShoppingCart");
+                }
+                else
+                {
+                    return View("ErrorPage");
+                }
             }
             else
             {
