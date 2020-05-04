@@ -65,7 +65,7 @@
 
     </table>
 
-    <button type="button" class="btn btn-lg pull-right btn-success" onclick="location.href='@Url.Action("CheckOut", "ShoppingCart", new { model = Model })'">Gå til betaling!</button>
+    <button type="button" class="btn btn-lg pull-right btn-success" onclick="location.href='@Url.Action("ExistingCustomerLogin", "Login", Model)'">Gå til betaling!</button>
     <button type="button" id="buyMore" class="btn btn-lg pull-right btn-secondary" onclick="location.href='@Url.Action("Index", "Home")'">Køb mere</button>
 
     <button type="button" class="btn btn-md btn-warning" onclick="location.href='@Url.Action("EmptyShoppingCart", "ShoppingCart")'">Tøm indkøbskurv</button>

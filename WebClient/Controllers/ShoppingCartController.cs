@@ -245,12 +245,20 @@ namespace WebshopClient.Controllers
             return RedirectToAction("Order");
         }
 
+
+        public ActionResult Login()
+        {
+            return View("Login");
+        }
+
+
         public ActionResult CheckOutSuccessful()
         {
             string random = Guid.NewGuid().ToString();
             Session["shoppingCart"] = null;
             return View((object)random);
         }
+
     }
 }
 

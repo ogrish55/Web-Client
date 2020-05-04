@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <h3>Kunde login</h3>
+        <h6>Indtast E-mail og adgangskode</h6>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Brugernavn (E-mail)</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Indtast e-mail">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Adgangskode</label>
+                <button type="submit" class="btn-link">Glemt adgangskode?</button>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Adgangskode">
+            </div>
+            <!--Så HER kan der satme laves hashing og pebering og karry AROMAT FOR HELVEDE!!-->
+            <button type="submit" class="btn btn-primary">Log ind</button>
+
+            <button type="button" class="btn" onclick="location.href='@Url.Action("NewCustomer", "Login")'">Ny kunde</button>
+
+        </form>
+    </div>
+</div>
+

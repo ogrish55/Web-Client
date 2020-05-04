@@ -47,8 +47,9 @@ namespace WebClient
             routes.MapRoute(
                 name: "PriceRange",
                 url: "Home/ProductsInPriceRange",
-                defaults: new { controller = "Home", action = "ProductsInPriceRange"}
+                defaults: new { controller = "Home", action = "ProductsInPriceRange" }
             );
+
         }
     }
 }
