@@ -85,6 +85,31 @@ textarea {
     margin-bottom: -10px;
 }
 
+
 #btnRegister {
     margin-top: 10px;
+}
+
+#success {
+margin-bottom: 20px;
+}
+
+.myDivClass {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.ErrorClass {
+    font-size: 70px;
+    margin-bottom: -20px;
+}
+
+.ErrorButtonClass{
+    margin-top: 35px;
+    background-color: green;
+    color: black;
+    width: 100px;
+    font-size: 40px !important;
 }

@@ -241,6 +241,7 @@
     <Content Include="Images\Minus.png" />
     <Content Include="Images\Plus.png" />
     <Content Include="Images\RedCircle.png" />
+    <Content Include="Images\successful.png" />
     <Content Include="Images\YellowCircle.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -277,6 +278,8 @@
     <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
     <Content Include="Views\Login\NewCustomer.cshtml" />
     <Content Include="Views\Login\ExistingCustomerLogin.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOutSuccessful.cshtml" />
+    <Content Include="Views\ShoppingCart\ErrorPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -93,7 +93,7 @@ namespace WebshopClient.Controllers
         }
 
         public ActionResult EmptyShoppingCart()
-        { 
+        {
             Session["shoppingCart"] = null;
             return RedirectToAction("Order", "ShoppingCart");
         }
@@ -103,7 +103,7 @@ namespace WebshopClient.Controllers
             checkoutViewModel = new CheckoutViewModel();
             checkoutViewModel.DeliveryDescription = new DeliveryDescription();
             checkoutViewModel.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
-            using(CustomerOrderServiceClient proxy = new CustomerOrderServiceClient())
+            using (CustomerOrderServiceClient proxy = new CustomerOrderServiceClient())
             {
                 List<PaymentMethod> listToAdd = new List<PaymentMethod>();
                 foreach (var item in proxy.GetPaymentMethods())
@@ -120,16 +120,27 @@ namespace WebshopClient.Controllers
         {
             if (ModelState.IsValid)
             {
+                bool success = false;
                 model.Order.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
                 model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
                 using (CustomerOrderServiceClient order = new CustomerOrderServiceClient())
                 {
                     OrderServiceReference.ServiceCustomer customerToInsert = new ConvertDataModel().ConvertToServiceCustomer(model.Customer);
                     ServiceCustomerOrder orderToInsert = new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order);
-                    order.FinishCheckout(customerToInsert, orderToInsert);
+                    if (Session["DiscountCode"] != null)
+                    {
+                        orderToInsert.DiscountCode = (string)Session["DiscountCode"];
+                    }
+                    success = order.FinishCheckout(customerToInsert, orderToInsert);
                 }
-            
-                return RedirectToAction("Index", "Home");
+                if (success)
+                {
+                    return RedirectToAction("CheckOutSuccessful", "ShoppingCart");
+                }
+                else
+                {
+                    return View("ErrorPage");
+                }
             }
             else
             {
@@ -160,9 +171,10 @@ namespace WebshopClient.Controllers
                     decimal discountAmount = order.GetDiscountByCode(code);
                     model.Discount.DiscountAmount = discountAmount;
                 }
-                if (model.Discount.DiscountAmount != 0 && Session["DiscountCode"] == null)
+                if (model.Discount.DiscountAmount != 0 && Session["DiscountCodeAmount"] == null)
                 {
-                    Session["DiscountCode"] = model.Discount.DiscountAmount;
+                    //model.Order.DiscountCode = code;
+                    Session["DiscountCodeAmount"] = model.Discount.DiscountAmount;
                     using (ProductLineServiceClient productline = new ProductLineServiceClient())
                     {
                         foreach (var item in model.ShoppingCart)
@@ -170,6 +182,7 @@ namespace WebshopClient.Controllers
                             item.SubTotal *= model.Discount.DiscountAmount;
                         }
                     }
+                    Session["DiscountCode"] = code;
                 }
             }
             return RedirectToAction("CheckOut", "ShoppingCart");
@@ -232,9 +245,18 @@ namespace WebshopClient.Controllers
             return RedirectToAction("Order");
         }
 
+
         public ActionResult Login()
         {
             return View("Login");
+        }
+
+
+        public ActionResult CheckOutSuccessful()
+        {
+            string random = Guid.NewGuid().ToString();
+            Session["shoppingCart"] = null;
+            return View((object)random);
         }
 
     }
