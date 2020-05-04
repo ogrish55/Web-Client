@@ -232,6 +232,11 @@ namespace WebshopClient.Controllers
             return RedirectToAction("Order");
         }
 
+        public ActionResult Login()
+        {
+            return View("Login");
+        }
+
     }
 }
 

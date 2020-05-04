@@ -144,6 +144,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -274,6 +275,8 @@
     <Content Include="Views\ShoppingCart\Order.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
+    <Content Include="Views\Login\NewCustomer.cshtml" />
+    <Content Include="Views\Login\ExistingCustomerLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
