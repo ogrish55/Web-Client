@@ -5,100 +5,40 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebshopClient.Model;
-using WebshopClient.ProductLineServiceReference;
 using WebshopClient.Utilities;
+using WebshopClient.ServiceLayer;
 
 namespace WebClient.Controllers
 {
     public class HomeController : Controller
     {
-        IConvertModel convertModel = new ConvertDataModel();
+        readonly IConvertModel convertModel = new ConvertDataModel();
+        readonly ProductService productService = new ProductService();
+
+
         public ActionResult Index(List<Product> filteredProducts)
         {
-            List<Product> clientProducts = new List<Product>();
-
-            using (ProductLineServiceClient productServiceProxy = new ProductLineServiceClient())
-            {
-                List<ServiceProduct> serviceProducts = new List<ServiceProduct>();
-                serviceProducts = productServiceProxy.GetAllProducts().ToList();
-
-                int i = 0;
-                while (i < serviceProducts.Count())
-                {
-                    clientProducts.Add(convertModel.ConvertFromServiceProduct(serviceProducts[i]));
-                    i++;
-                }
-            }
+            List<Product> clientProducts;
+            clientProducts = productService.GetAllProducts();
             return View(clientProducts);
         }
 
         public ActionResult ProductsInPriceRange(int min, int max)
         {
-            Debug.WriteLine("min: " + min + " max: " + max);
-            List<Product> priceRangeProducts = new List<Product>();
-
-            using (ProductLineServiceClient productServiceProxy = new ProductLineServiceClient())
-            {
-                List<ServiceProduct> serviceProducts = new List<ServiceProduct>();
-                serviceProducts = productServiceProxy.GetAllProducts().ToList();
-                int i = 0;
-                while (i < serviceProducts.Count())
-                {
-                    if (serviceProducts[i].Price >= min && serviceProducts[i].Price <= max)
-                    {
-                        priceRangeProducts.Add(convertModel.ConvertFromServiceProduct(serviceProducts[i]));
-                    }
-                    i++;
-                }
-            }
-
-            return View("Index", priceRangeProducts);
+            List<Product> productsToReturn = productService.GetAllProductsInPriceRange(min, max);
+            return View("Index", productsToReturn);
         }
 
         public ActionResult ProductsBasedOnBrand(string brandName)
         {
-            List<Product> productsBasedOnBrand = new List<Product>();
-
-            using (ProductLineServiceClient productServiceProxy = new ProductLineServiceClient())
-            {
-                List<ServiceProduct> serviceProducts = new List<ServiceProduct>();
-                serviceProducts = productServiceProxy.GetAllProducts().ToList();
-
-                int i = 0;
-                while (i < serviceProducts.Count())
-                {
-                    if (serviceProducts[i].Brand.Equals(brandName))
-                    {
-                        productsBasedOnBrand.Add(convertModel.ConvertFromServiceProduct(serviceProducts[i]));
-                    }
-                    i++;
-                }
-            }
-
-            return View("Index", productsBasedOnBrand);
+            List<Product> productsToReturn = productService.GetAllProductsBasedOnBrand(brandName);
+            return View("Index", productsToReturn);
         }
 
         public ActionResult ProductsBasedOnCategory(string category)
         {
-            List<Product> productsBasedOnCategory = new List<Product>();
-
-            using (ProductLineServiceClient productServiceProxy = new ProductLineServiceClient())
-            {
-                List<ServiceProduct> serviceProducts = new List<ServiceProduct>();
-                serviceProducts = productServiceProxy.GetAllProducts().ToList();
-
-                int i = 0;
-                while (i < serviceProducts.Count())
-                {
-                    if (serviceProducts[i].Category.Equals(category))
-                    {
-                        productsBasedOnCategory.Add(convertModel.ConvertFromServiceProduct(serviceProducts[i]));
-                    }
-                    i++;
-                }
-            }
-
-            return View("Index", productsBasedOnCategory);
+            List<Product> productsToReturn = productService.GetAllProductsBasedOnCategory(category);
+            return View("Index", productsToReturn);
         }
 
         public ActionResult About()

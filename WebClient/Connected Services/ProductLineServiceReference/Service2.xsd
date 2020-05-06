@@ -28,4 +28,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfServiceProduct" nillable="true" type="tns:ArrayOfServiceProduct" />
+  <xs:complexType name="ArrayOfServiceReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceReview" nillable="true" type="tns:ServiceReview" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServiceReview" nillable="true" type="tns:ArrayOfServiceReview" />
+  <xs:complexType name="ServiceReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rating" type="xs:int" />
+      <xs:element minOccurs="0" name="ReviewId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceReview" nillable="true" type="tns:ServiceReview" />
 </xs:schema>

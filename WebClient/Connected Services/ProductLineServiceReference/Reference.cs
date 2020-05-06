@@ -263,6 +263,83 @@ namespace WebshopClient.ProductLineServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceReview", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class ServiceReview : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CommentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RatingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ReviewIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Comment {
+            get {
+                return this.CommentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommentField, value) != true)) {
+                    this.CommentField = value;
+                    this.RaisePropertyChanged("Comment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Rating {
+            get {
+                return this.RatingField;
+            }
+            set {
+                if ((this.RatingField.Equals(value) != true)) {
+                    this.RatingField = value;
+                    this.RaisePropertyChanged("Rating");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ReviewId {
+            get {
+                return this.ReviewIdField;
+            }
+            set {
+                if ((this.ReviewIdField.Equals(value) != true)) {
+                    this.ReviewIdField = value;
+                    this.RaisePropertyChanged("ReviewId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProductLineServiceReference.IProductLineService")]
     public interface IProductLineService {
@@ -314,6 +391,18 @@ namespace WebshopClient.ProductLineServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductLineService/GetAllProducts", ReplyAction="http://tempuri.org/IProductLineService/GetAllProductsResponse")]
         System.Threading.Tasks.Task<WebshopClient.ProductLineServiceReference.ServiceProduct[]> GetAllProductsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductLineService/GetAllReviewsByProductId", ReplyAction="http://tempuri.org/IProductLineService/GetAllReviewsByProductIdResponse")]
+        WebshopClient.ProductLineServiceReference.ServiceReview[] GetAllReviewsByProductId(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductLineService/GetAllReviewsByProductId", ReplyAction="http://tempuri.org/IProductLineService/GetAllReviewsByProductIdResponse")]
+        System.Threading.Tasks.Task<WebshopClient.ProductLineServiceReference.ServiceReview[]> GetAllReviewsByProductIdAsync(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductLineService/InsertReview", ReplyAction="http://tempuri.org/IProductLineService/InsertReviewResponse")]
+        int InsertReview(WebshopClient.ProductLineServiceReference.ServiceReview review);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductLineService/InsertReview", ReplyAction="http://tempuri.org/IProductLineService/InsertReviewResponse")]
+        System.Threading.Tasks.Task<int> InsertReviewAsync(WebshopClient.ProductLineServiceReference.ServiceReview review);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -405,6 +494,22 @@ namespace WebshopClient.ProductLineServiceReference {
         
         public System.Threading.Tasks.Task<WebshopClient.ProductLineServiceReference.ServiceProduct[]> GetAllProductsAsync() {
             return base.Channel.GetAllProductsAsync();
+        }
+        
+        public WebshopClient.ProductLineServiceReference.ServiceReview[] GetAllReviewsByProductId(int productId) {
+            return base.Channel.GetAllReviewsByProductId(productId);
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.ProductLineServiceReference.ServiceReview[]> GetAllReviewsByProductIdAsync(int productId) {
+            return base.Channel.GetAllReviewsByProductIdAsync(productId);
+        }
+        
+        public int InsertReview(WebshopClient.ProductLineServiceReference.ServiceReview review) {
+            return base.Channel.InsertReview(review);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertReviewAsync(WebshopClient.ProductLineServiceReference.ServiceReview review) {
+            return base.Channel.InsertReviewAsync(review);
         }
     }
 }

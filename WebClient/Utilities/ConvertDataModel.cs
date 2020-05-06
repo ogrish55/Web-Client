@@ -86,14 +86,30 @@ namespace WebshopClient.Utilities
             return customerToReturn;
         }
 
-        public OrderServiceReference.ServiceCustomer ConvertToServiceCustomer(Customer webshopCustomer)
+        //public OrderServiceReference.ServiceCustomer ConvertToServiceCustomer(Customer webshopCustomer)
+        //{
+        //    OrderServiceReference.ServiceCustomer customerToReturn = new OrderServiceReference.ServiceCustomer();
+        //    customerToReturn.CustomerId = webshopCustomer.CustomerId;
+        //    customerToReturn.Name = webshopCustomer.Name;
+        //    customerToReturn.Address = webshopCustomer.Address;
+        //    customerToReturn.ZipCode = webshopCustomer.ZipCode;
+        //    customerToReturn.PhoneNo = webshopCustomer.PhoneNo;
+        //    customerToReturn.Password = webshopCustomer.Password;
+        //    customerToReturn.Email = webshopCustomer.Email;
+
+        //    return customerToReturn;
+        //}
+
+        public CustomerServiceReference.ServiceCustomer ConvertToServiceCustomer(Customer webshopCustomer)
         {
-            OrderServiceReference.ServiceCustomer customerToReturn = new OrderServiceReference.ServiceCustomer();
+            CustomerServiceReference.ServiceCustomer customerToReturn = new CustomerServiceReference.ServiceCustomer();
             customerToReturn.CustomerId = webshopCustomer.CustomerId;
             customerToReturn.Name = webshopCustomer.Name;
             customerToReturn.Address = webshopCustomer.Address;
             customerToReturn.ZipCode = webshopCustomer.ZipCode;
             customerToReturn.PhoneNo = webshopCustomer.PhoneNo;
+            customerToReturn.Password = webshopCustomer.Password;
+            customerToReturn.Email = webshopCustomer.Email;
 
             return customerToReturn;
         }

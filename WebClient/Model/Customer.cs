@@ -25,6 +25,14 @@ namespace WebshopClient.Model
 
         [Required (ErrorMessage ="Phonenumber is required")]
         [DataType(DataType.PhoneNumber)]
-        public int PhoneNo { get; set; }
+        public string PhoneNo { get; set; }
+
+        [Required (ErrorMessage = "Email is required")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
+        [Required (ErrorMessage = "Password is required")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }
