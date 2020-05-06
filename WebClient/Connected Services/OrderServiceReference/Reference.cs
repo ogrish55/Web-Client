@@ -667,115 +667,6 @@ namespace WebshopClient.OrderServiceReference {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceCustomer", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
-    [System.SerializableAttribute()]
-    public partial class ServiceCustomer : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CustomerIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PhoneNoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ZipCodeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CustomerId {
-            get {
-                return this.CustomerIdField;
-            }
-            set {
-                if ((this.CustomerIdField.Equals(value) != true)) {
-                    this.CustomerIdField = value;
-                    this.RaisePropertyChanged("CustomerId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int PhoneNo {
-            get {
-                return this.PhoneNoField;
-            }
-            set {
-                if ((this.PhoneNoField.Equals(value) != true)) {
-                    this.PhoneNoField = value;
-                    this.RaisePropertyChanged("PhoneNo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ZipCode {
-            get {
-                return this.ZipCodeField;
-            }
-            set {
-                if ((this.ZipCodeField.Equals(value) != true)) {
-                    this.ZipCodeField = value;
-                    this.RaisePropertyChanged("ZipCode");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="OrderServiceReference.ICustomerOrderService")]
     public interface ICustomerOrderService {
@@ -871,10 +762,10 @@ namespace WebshopClient.OrderServiceReference {
         System.Threading.Tasks.Task<WebshopClient.OrderServiceReference.ServicePaymentMethod[]> GetPaymentMethodsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/FinishCheckout", ReplyAction="http://tempuri.org/ICustomerOrderService/FinishCheckoutResponse")]
-        bool FinishCheckout(WebshopClient.OrderServiceReference.ServiceCustomer customer, WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
+        bool FinishCheckout(WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOrderService/FinishCheckout", ReplyAction="http://tempuri.org/ICustomerOrderService/FinishCheckoutResponse")]
-        System.Threading.Tasks.Task<bool> FinishCheckoutAsync(WebshopClient.OrderServiceReference.ServiceCustomer customer, WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
+        System.Threading.Tasks.Task<bool> FinishCheckoutAsync(WebshopClient.OrderServiceReference.ServiceCustomerOrder order);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1024,12 +915,12 @@ namespace WebshopClient.OrderServiceReference {
             return base.Channel.GetPaymentMethodsAsync();
         }
         
-        public bool FinishCheckout(WebshopClient.OrderServiceReference.ServiceCustomer customer, WebshopClient.OrderServiceReference.ServiceCustomerOrder order) {
-            return base.Channel.FinishCheckout(customer, order);
+        public bool FinishCheckout(WebshopClient.OrderServiceReference.ServiceCustomerOrder order) {
+            return base.Channel.FinishCheckout(order);
         }
         
-        public System.Threading.Tasks.Task<bool> FinishCheckoutAsync(WebshopClient.OrderServiceReference.ServiceCustomer customer, WebshopClient.OrderServiceReference.ServiceCustomerOrder order) {
-            return base.Channel.FinishCheckoutAsync(customer, order);
+        public System.Threading.Tasks.Task<bool> FinishCheckoutAsync(WebshopClient.OrderServiceReference.ServiceCustomerOrder order) {
+            return base.Channel.FinishCheckoutAsync(order);
         }
     }
 }

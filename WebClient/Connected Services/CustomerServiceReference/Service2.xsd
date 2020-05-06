@@ -39,4 +39,33 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="VerifyLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="enteredPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Service.Model" minOccurs="0" name="VerifyLoginResult" nillable="true" type="q3:ServiceCustomer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Service.Model" minOccurs="0" name="GetCustomerResult" nillable="true" type="q4:ServiceCustomer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

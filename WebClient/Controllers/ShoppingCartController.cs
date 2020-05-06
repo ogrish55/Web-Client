@@ -4,11 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebshopClient.Model;
-using WebshopClient.CustomerServiceReference;
-using WebshopClient.OrderServiceReference;
-using WebshopClient.ProductLineServiceReference;
-using WebshopClient.Utilities;
-using System.Diagnostics;
+using WebshopClient.ServiceLayer;
 
 namespace WebshopClient.Controllers
 {
@@ -16,23 +12,28 @@ namespace WebshopClient.Controllers
     {
         List<ProductLine> productLineList;
         CheckoutViewModel checkoutViewModel;
+        OrderService orderService = new OrderService();
+        CustomerService customerService = new CustomerService();
 
         [HttpPost]
         public ActionResult Add(Product product)
         {
-            if (Session["shoppingCart"] == null)
+            if (Session["shoppingCart"] == null) // If no shoppingCart has been created, create new shoppingCart and add product to it
             {
                 productLineList = new List<ProductLine>();
 
-                ProductLine productLine = new ProductLine();
-                productLine.Amount = 1;
-                productLine.SubTotal = product.Price;
-                productLine.Product = product;
+                ProductLine productLine = new ProductLine
+                {
+                    Amount = 1,
+                    SubTotal = product.Price,
+                    Product = product
+                };
                 productLineList.Add(productLine);
 
                 Session["shoppingCart"] = productLineList;
             }
-            else
+
+            else // if shoppingCart has been created previously, add product to shoppingCart
             {
                 productLineList = (List<ProductLine>)Session["shoppingCart"];
 
@@ -40,20 +41,23 @@ namespace WebshopClient.Controllers
 
                 foreach (ProductLine productLine in productLineList)
                 {
-                    if (productLine.Product.ProductId == product.ProductId)
+                    if (productLine.Product.ProductId == product.ProductId) // if the product is the same as one of the products in the shoppingCart, increment amount by 1 and update Subtotal.
                     {
-                        productLine.Amount = productLine.Amount + 1;
-                        productLine.SubTotal = productLine.SubTotal * productLine.Amount;
+                        productLine.Amount++;
+                        productLine.SubTotal *= productLine.Amount;
                         found = true;
                     }
                 }
 
-                if (productLineList.Count() == 0 || !found)
+                if (!found) // if the product is not in the shoppingCart already, add the product to the shoppingCart.
                 {
-                    ProductLine productLine = new ProductLine();
-                    productLine.Amount = 1;
-                    productLine.SubTotal = product.Price;
-                    productLine.Product = product;
+                    ProductLine productLine = new ProductLine
+                    {
+                        Amount = 1,
+                        SubTotal = product.Price,
+                        Product = product
+                    };
+
                     productLineList.Add(productLine);
                 }
 
@@ -64,7 +68,9 @@ namespace WebshopClient.Controllers
 
         public ActionResult Order()
         {
-            return View((List<ProductLine>)Session["shoppingCart"]);
+            checkoutViewModel = new CheckoutViewModel();
+            checkoutViewModel.ShoppingCart = (List<ProductLine>) Session["shoppingCart"];
+            return View(checkoutViewModel);
         }
 
         public ActionResult Delete(int id)
@@ -100,18 +106,13 @@ namespace WebshopClient.Controllers
 
         public ActionResult CheckOut()
         {
-            checkoutViewModel = new CheckoutViewModel();
-            checkoutViewModel.DeliveryDescription = new DeliveryDescription();
-            checkoutViewModel.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
-            using (CustomerOrderServiceClient proxy = new CustomerOrderServiceClient())
+            checkoutViewModel = new CheckoutViewModel
             {
-                List<PaymentMethod> listToAdd = new List<PaymentMethod>();
-                foreach (var item in proxy.GetPaymentMethods())
-                {
-                    listToAdd.Add(new ConvertDataModel().ConvertFromServicePaymentMethodToClient(item));
-                }
-                checkoutViewModel.PaymentMethods = listToAdd;
-            }
+                DeliveryDescription = new DeliveryDescription(),
+                ShoppingCart = (List<ProductLine>)Session["shoppingCart"],
+                PaymentMethods = orderService.GetPaymentMethods(),
+                Customer = customerService.GetCustomer((int)Session["CustomerId"])
+            };
             return View(checkoutViewModel);
         }
 
@@ -120,18 +121,17 @@ namespace WebshopClient.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool success = false;
+                model.Customer.CustomerId = (int)Session["CustomerID"];
                 model.Order.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
                 model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
-                using (CustomerOrderServiceClient order = new CustomerOrderServiceClient())
+                bool success;
                 {
-                    OrderServiceReference.ServiceCustomer customerToInsert = new ConvertDataModel().ConvertToServiceCustomer(model.Customer);
-                    ServiceCustomerOrder orderToInsert = new ConvertDataModel().ConvertToServiceCustomerOrder(model.Order);
+                    
                     if (Session["DiscountCode"] != null)
                     {
-                        orderToInsert.DiscountCode = (string)Session["DiscountCode"];
+                        model.Order.DiscountCode = (string)Session["DiscountCode"];
                     }
-                    success = order.FinishCheckout(customerToInsert, orderToInsert);
+                    success = orderService.FinishCheckout(model.Order);
                 }
                 if (success)
                 {
@@ -142,17 +142,10 @@ namespace WebshopClient.Controllers
                     return View("ErrorPage");
                 }
             }
+
             else
             {
-                using (CustomerOrderServiceClient proxy = new CustomerOrderServiceClient())
-                {
-                    List<PaymentMethod> listToAdd = new List<PaymentMethod>();
-                    foreach (var item in proxy.GetPaymentMethods())
-                    {
-                        listToAdd.Add(new ConvertDataModel().ConvertFromServicePaymentMethodToClient(item));
-                    }
-                    model.PaymentMethods = listToAdd;
-                }
+                model.PaymentMethods = orderService.GetPaymentMethods();
                 model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
                 return View(model);
             }
@@ -162,27 +155,18 @@ namespace WebshopClient.Controllers
         public ActionResult AddDiscountCode(CheckoutViewModel model)
         {
             model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
-            string code = model.Discount.DiscountCode;
 
             if (ModelState.IsValid)
             {
-                using (CustomerOrderServiceClient order = new CustomerOrderServiceClient())
+                model.Discount.DiscountAmount = orderService.GetDiscount(model.Discount.DiscountCode); // set discount amount based on the discountCode inserted in paramter.
+                if (model.Discount.DiscountAmount != 0 && Session["DiscountCodeAmount"] == null) 
                 {
-                    decimal discountAmount = order.GetDiscountByCode(code);
-                    model.Discount.DiscountAmount = discountAmount;
-                }
-                if (model.Discount.DiscountAmount != 0 && Session["DiscountCodeAmount"] == null)
-                {
-                    //model.Order.DiscountCode = code;
                     Session["DiscountCodeAmount"] = model.Discount.DiscountAmount;
-                    using (ProductLineServiceClient productline = new ProductLineServiceClient())
-                    {
                         foreach (var item in model.ShoppingCart)
                         {
                             item.SubTotal *= model.Discount.DiscountAmount;
                         }
-                    }
-                    Session["DiscountCode"] = code;
+                    Session["DiscountCode"] = model.Discount.DiscountCode;
                 }
             }
             return RedirectToAction("CheckOut", "ShoppingCart");

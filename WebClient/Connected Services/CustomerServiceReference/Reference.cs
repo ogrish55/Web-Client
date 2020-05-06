@@ -29,10 +29,22 @@ namespace WebshopClient.CustomerServiceReference {
         private int CustomerIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HashField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PhoneNoField;
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SaltField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ZipCodeField;
@@ -74,6 +86,32 @@ namespace WebshopClient.CustomerServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Hash {
+            get {
+                return this.HashField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HashField, value) != true)) {
+                    this.HashField = value;
+                    this.RaisePropertyChanged("Hash");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
             get {
                 return this.NameField;
@@ -87,14 +125,40 @@ namespace WebshopClient.CustomerServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int PhoneNo {
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneNo {
             get {
                 return this.PhoneNoField;
             }
             set {
-                if ((this.PhoneNoField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.PhoneNoField, value) != true)) {
                     this.PhoneNoField = value;
                     this.RaisePropertyChanged("PhoneNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Salt {
+            get {
+                return this.SaltField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SaltField, value) != true)) {
+                    this.SaltField = value;
+                    this.RaisePropertyChanged("Salt");
                 }
             }
         }
@@ -143,6 +207,18 @@ namespace WebshopClient.CustomerServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerService/DeleteCustomer", ReplyAction="http://tempuri.org/ICustomerService/DeleteCustomerResponse")]
         System.Threading.Tasks.Task DeleteCustomerAsync(int customerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerService/VerifyLogin", ReplyAction="http://tempuri.org/ICustomerService/VerifyLoginResponse")]
+        WebshopClient.CustomerServiceReference.ServiceCustomer VerifyLogin(string enteredPassword, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerService/VerifyLogin", ReplyAction="http://tempuri.org/ICustomerService/VerifyLoginResponse")]
+        System.Threading.Tasks.Task<WebshopClient.CustomerServiceReference.ServiceCustomer> VerifyLoginAsync(string enteredPassword, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerService/GetCustomer", ReplyAction="http://tempuri.org/ICustomerService/GetCustomerResponse")]
+        WebshopClient.CustomerServiceReference.ServiceCustomer GetCustomer(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerService/GetCustomer", ReplyAction="http://tempuri.org/ICustomerService/GetCustomerResponse")]
+        System.Threading.Tasks.Task<WebshopClient.CustomerServiceReference.ServiceCustomer> GetCustomerAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -194,6 +270,22 @@ namespace WebshopClient.CustomerServiceReference {
         
         public System.Threading.Tasks.Task DeleteCustomerAsync(int customerId) {
             return base.Channel.DeleteCustomerAsync(customerId);
+        }
+        
+        public WebshopClient.CustomerServiceReference.ServiceCustomer VerifyLogin(string enteredPassword, string email) {
+            return base.Channel.VerifyLogin(enteredPassword, email);
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.CustomerServiceReference.ServiceCustomer> VerifyLoginAsync(string enteredPassword, string email) {
+            return base.Channel.VerifyLoginAsync(enteredPassword, email);
+        }
+        
+        public WebshopClient.CustomerServiceReference.ServiceCustomer GetCustomer(int id) {
+            return base.Channel.GetCustomer(id);
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.CustomerServiceReference.ServiceCustomer> GetCustomerAsync(int id) {
+            return base.Channel.GetCustomerAsync(id);
         }
     }
 }
