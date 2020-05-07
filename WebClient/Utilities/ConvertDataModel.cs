@@ -82,6 +82,8 @@ namespace WebshopClient.Utilities
             customerToReturn.Address = serviceCustomer.Address;
             customerToReturn.ZipCode = serviceCustomer.ZipCode;
             customerToReturn.PhoneNo = serviceCustomer.PhoneNo;
+            customerToReturn.Email = serviceCustomer.Email;
+            customerToReturn.City = serviceCustomer.City;
 
             return customerToReturn;
         }

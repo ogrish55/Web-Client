@@ -9,7 +9,7 @@
 
 <h2>Indkøbskurv</h2>
 
-@if (Model != null)
+@if (Model != null && Model.ShoppingCart != null)
 {
     <table class="table">
         <tr>
@@ -28,7 +28,6 @@
 
             <th></th>
         </tr>
-
         @foreach (var item in Model.ShoppingCart)
         {
             <tr>
@@ -63,6 +62,7 @@
                 </td>
             </tr>
         }
+
 
     </table>
 

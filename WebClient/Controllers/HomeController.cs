@@ -43,14 +43,14 @@ namespace WebClient.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Markedets bedste priser";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Du er altid velkommen til at kontakte os";
 
             return View();
         }

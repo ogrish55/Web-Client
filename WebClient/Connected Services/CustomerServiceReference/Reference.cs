@@ -26,6 +26,9 @@ namespace WebshopClient.CustomerServiceReference {
         private string AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int CustomerIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -68,6 +71,19 @@ namespace WebshopClient.CustomerServiceReference {
                 if ((object.ReferenceEquals(this.AddressField, value) != true)) {
                     this.AddressField = value;
                     this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string City {
+            get {
+                return this.CityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CityField, value) != true)) {
+                    this.CityField = value;
+                    this.RaisePropertyChanged("City");
                 }
             }
         }

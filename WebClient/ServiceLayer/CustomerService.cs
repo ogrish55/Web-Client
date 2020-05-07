@@ -33,6 +33,26 @@ namespace WebshopClient.ServiceLayer
             }
             return customerToReturn;
         }
+
+        public int VerifyCustomerLogin(string password, string email)
+        {
+            int customerID;
+
+            using(CustomerServiceClient proxy = new CustomerServiceClient())
+            {
+                ServiceCustomer customer =  proxy.VerifyLogin(password, email);
+                if(customer != null)
+                {
+                    customerID = customer.CustomerId;
+                }
+                else
+                {
+                    customerID = -1;
+                }
+            }
+
+            return customerID;
+        }
         
     }
 }

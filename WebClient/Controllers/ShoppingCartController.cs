@@ -69,7 +69,7 @@ namespace WebshopClient.Controllers
         public ActionResult Order()
         {
             checkoutViewModel = new CheckoutViewModel();
-            checkoutViewModel.ShoppingCart = (List<ProductLine>) Session["shoppingCart"];
+            checkoutViewModel.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
             return View(checkoutViewModel);
         }
 
@@ -119,37 +119,33 @@ namespace WebshopClient.Controllers
         [HttpPost]
         public ActionResult CheckOut(CheckoutViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                model.Customer.CustomerId = (int)Session["CustomerID"];
-                model.Order.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
-                model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
-                bool success;
-                {
-                    
-                    if (Session["DiscountCode"] != null)
-                    {
-                        model.Order.DiscountCode = (string)Session["DiscountCode"];
-                    }
-                    success = orderService.FinishCheckout(model.Order);
-                }
-                if (success)
-                {
-                    return RedirectToAction("CheckOutSuccessful", "ShoppingCart");
-                }
-                else
-                {
-                    return View("ErrorPage");
-                }
-            }
+            model.Customer.CustomerId = (int)Session["CustomerID"];
+            model.Order.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
+            model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
+            model.Order.CustomerId = (int)Session["CustomerID"];
 
+            bool success;
+            {
+
+                if (Session["DiscountCode"] != null)
+                {
+                    model.Order.DiscountCode = (string)Session["DiscountCode"];
+                }
+                success = orderService.FinishCheckout(model.Order);
+            }
+            if (success)
+            {
+                return RedirectToAction("CheckOutSuccessful", "ShoppingCart");
+            }
             else
             {
-                model.PaymentMethods = orderService.GetPaymentMethods();
-                model.ShoppingCart = (List<ProductLine>)Session["shoppingCart"];
-                return View(model);
+                return View("ErrorPage");
             }
         }
+    
+
+
+
 
         [HttpPost]
         public ActionResult AddDiscountCode(CheckoutViewModel model)
@@ -159,13 +155,13 @@ namespace WebshopClient.Controllers
             if (ModelState.IsValid)
             {
                 model.Discount.DiscountAmount = orderService.GetDiscount(model.Discount.DiscountCode); // set discount amount based on the discountCode inserted in paramter.
-                if (model.Discount.DiscountAmount != 0 && Session["DiscountCodeAmount"] == null) 
+                if (model.Discount.DiscountAmount != 0 && Session["DiscountCodeAmount"] == null)
                 {
                     Session["DiscountCodeAmount"] = model.Discount.DiscountAmount;
-                        foreach (var item in model.ShoppingCart)
-                        {
-                            item.SubTotal *= model.Discount.DiscountAmount;
-                        }
+                    foreach (var item in model.ShoppingCart)
+                    {
+                        item.SubTotal = item.SubTotal * model.Discount.DiscountAmount;
+                    }
                     Session["DiscountCode"] = model.Discount.DiscountCode;
                 }
             }
