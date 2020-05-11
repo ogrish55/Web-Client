@@ -14,13 +14,21 @@ namespace WebClient.Controllers
     {
         readonly IConvertModel convertModel = new ConvertDataModel();
         readonly ProductService productService = new ProductService();
+        private List<Product> clientProducts;
+        private List<Brand> brands;
+        private List<Category> categories;
+        private IndexViewModel indexViewModel;
 
-
+        public HomeController()
+        {
+            clientProducts = productService.GetAllProducts();
+            brands = (List<Brand>)productService.GetAllBrands();
+            categories = (List<Category>)productService.GetAllCategories();
+            indexViewModel = new IndexViewModel() { Products = clientProducts, Brands = brands, Categories = categories };
+        }
         public ActionResult Index(List<Product> filteredProducts)
         {
-            List<Product> clientProducts;
-            clientProducts = productService.GetAllProducts();
-            return View(clientProducts);
+            return View(indexViewModel);
         }
 
         public ActionResult ProductsInPriceRange(int min, int max)
@@ -29,16 +37,18 @@ namespace WebClient.Controllers
             return View("Index", productsToReturn);
         }
 
-        public ActionResult ProductsBasedOnBrand(string brandName)
+        public ActionResult ProductsBasedOnBrand(int brandId)
         {
-            List<Product> productsToReturn = productService.GetAllProductsBasedOnBrand(brandName);
-            return View("Index", productsToReturn);
+            List<Product> productsBasedOnBrand = productService.GetAllProductsBasedOnBrand(brandId);
+            indexViewModel.Products = productsBasedOnBrand;
+            return View("Index", indexViewModel);
         }
 
-        public ActionResult ProductsBasedOnCategory(string category)
+        public ActionResult ProductsBasedOnCategory(int categoryId)
         {
-            List<Product> productsToReturn = productService.GetAllProductsBasedOnCategory(category);
-            return View("Index", productsToReturn);
+            List<Product> productsBasedOnCategory = productService.GetAllProductsBasedOnCategory(categoryId);
+            indexViewModel.Products = productsBasedOnCategory;
+            return View("Index", indexViewModel);
         }
 
         public ActionResult About()

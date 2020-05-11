@@ -292,10 +292,10 @@ namespace WebshopClient.OrderServiceReference {
         private int AmountOnStockField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BrandField;
+        private int BrandIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CategoryField;
+        private int CategoryIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
@@ -308,6 +308,9 @@ namespace WebshopClient.OrderServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ProductIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] rowIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -333,27 +336,27 @@ namespace WebshopClient.OrderServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Brand {
+        public int BrandId {
             get {
-                return this.BrandField;
+                return this.BrandIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.BrandField, value) != true)) {
-                    this.BrandField = value;
-                    this.RaisePropertyChanged("Brand");
+                if ((this.BrandIdField.Equals(value) != true)) {
+                    this.BrandIdField = value;
+                    this.RaisePropertyChanged("BrandId");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Category {
+        public int CategoryId {
             get {
-                return this.CategoryField;
+                return this.CategoryIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
-                    this.CategoryField = value;
-                    this.RaisePropertyChanged("Category");
+                if ((this.CategoryIdField.Equals(value) != true)) {
+                    this.CategoryIdField = value;
+                    this.RaisePropertyChanged("CategoryId");
                 }
             }
         }
@@ -406,6 +409,19 @@ namespace WebshopClient.OrderServiceReference {
                 if ((this.ProductIdField.Equals(value) != true)) {
                     this.ProductIdField = value;
                     this.RaisePropertyChanged("ProductId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] rowId {
+            get {
+                return this.rowIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.rowIdField, value) != true)) {
+                    this.rowIdField = value;
+                    this.RaisePropertyChanged("rowId");
                 }
             }
         }

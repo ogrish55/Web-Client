@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebshopClient.Model.Product>
+﻿@model WebshopClient.Model.IndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -41,17 +41,12 @@
         <button id="brandBtn" type="submit" class="btn btn-link">Alle</button> <br />
     }
 
-    @using (Html.BeginForm("ProductsBasedOnBrand", "Home", new { brandName = "ASUS" }))
+    @foreach (var brand in Model.Brands)
     {
-        <button id="brandBtn" type="submit" class="btn btn-link">Asus</button> <br />
-    }
-    @using (Html.BeginForm("ProductsBasedOnBrand", "Home", new { brandName = "AMD" }))
-    {
-        <button id="brandBtn" type="submit" class="btn btn-link">AMD</button> <br />
-    }
-    @using (Html.BeginForm("ProductsBasedOnBrand", "Home", new { brandName = "Intel" }))
-    {
-        <button id="brandBtn" type="submit" class="btn btn-link">Intel</button> <br />
+        using (Html.BeginForm("ProductsBasedOnBrand", "Home", new { brandId = brand.BrandId }))
+        {
+            <button id="brandBtn" type="submit" class="btn btn-link">@brand.Name</button> <br />
+        }
     }
 
     <h4 id="categoryFilterText">Kategorier</h4> <br />
@@ -60,28 +55,18 @@
         <button id="categoryBtn" type="submit" class="btn btn-link">Alle</button> <br />
     }
 
-    @using (Html.BeginForm("ProductsBasedOnCategory", "Home", new { category = "Hardware" }))
+    @foreach (var category in Model.Categories)
     {
-        <button id="categoryBtn" type="submit" class="btn btn-link">Hardware</button> <br />
+        using (Html.BeginForm("ProductsBasedOnCategory", "Home", new { categoryId = category.CategoryId }))
+        {
+            <button id="brandBtn" type="submit" class="btn btn-link">@category.Name</button> <br />
+        }
     }
-    @using (Html.BeginForm("ProductsBasedOnCategory", "Home", new { category = "Office pc" }))
-    {
-        <button id="categoryBtn" type="submit" class="btn btn-link">Office pc'er</button> <br />
-    }
-    @using (Html.BeginForm("ProductsBasedOnCategory", "Home", new { category = "Gaming pc" }))
-    {
-        <button id="categoryBtn" type="submit" class="btn btn-link">Gaming pc'er</button> <br />
-    }
-    @using (Html.BeginForm("ProductsBasedOnCategory", "Home", new { category = "Xtreme gaming pc" }))
-    {
-        <button id="categoryBtn" type="submit" class="btn btn-link">Xtreme gaming pc'er</button> <br />
-    }
-
 
 </div>
 
 <div class="col-md-10" id="rowProducts">
-    @foreach (var product in Model)
+    @foreach (var product in Model.Products)
     {
         <div class="col-md-4">
             <div class="card" id="divCard">
