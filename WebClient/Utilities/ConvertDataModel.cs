@@ -20,8 +20,8 @@ namespace WebshopClient.Utilities
             productToReturn.Description = serviceProduct.Description;
             productToReturn.ProductId = serviceProduct.ProductId;
             productToReturn.AmountOnStock = serviceProduct.AmountOnStock;
-            productToReturn.Brand = serviceProduct.Brand;
-            productToReturn.Category = serviceProduct.Category;
+            productToReturn.BrandId = serviceProduct.BrandId;
+            productToReturn.CategoryId = serviceProduct.CategoryId;
 
             return productToReturn;
         }
@@ -34,8 +34,8 @@ namespace WebshopClient.Utilities
             productToReturn.Price = webshopProduct.Price;
             productToReturn.Description = webshopProduct.Description;
             productToReturn.AmountOnStock = webshopProduct.AmountOnStock;
-            productToReturn.Brand = webshopProduct.Brand;
-            productToReturn.Category = webshopProduct.Category;
+            productToReturn.BrandId = webshopProduct.BrandId;
+            productToReturn.CategoryId = webshopProduct.CategoryId;
 
             return productToReturn;
         }
@@ -143,6 +143,21 @@ namespace WebshopClient.Utilities
             return serviceDiscountToReturn;
         }
 
+        public Category ConvertFromServiceCategory(ServiceCategory serviceCategory)
+        {
+            Category categoryToReturn = new Category();
+            categoryToReturn.Name = serviceCategory.Name;
+            categoryToReturn.CategoryId = serviceCategory.CategoryId;
+            return categoryToReturn;
+        }
+
+        public Brand ConvertFromServiceBrand(ServiceBrand serviceBrand)
+        {
+            Brand brandToReturn = new Brand();
+            brandToReturn.Name = serviceBrand.Name;
+            brandToReturn.BrandId = serviceBrand.BrandId;
+            return brandToReturn;
+        }
 
         //Remember to uncomment
 

@@ -15,6 +15,128 @@ namespace WebshopClient.ProductLineServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceCategory", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class ServiceCategory : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CategoryIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CategoryId {
+            get {
+                return this.CategoryIdField;
+            }
+            set {
+                if ((this.CategoryIdField.Equals(value) != true)) {
+                    this.CategoryIdField = value;
+                    this.RaisePropertyChanged("CategoryId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceBrand", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
+    [System.SerializableAttribute()]
+    public partial class ServiceBrand : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BrandIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BrandId {
+            get {
+                return this.BrandIdField;
+            }
+            set {
+                if ((this.BrandIdField.Equals(value) != true)) {
+                    this.BrandIdField = value;
+                    this.RaisePropertyChanged("BrandId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ServiceProductLine", Namespace="http://schemas.datacontract.org/2004/07/Service.Model")]
     [System.SerializableAttribute()]
     public partial class ServiceProductLine : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -135,10 +257,10 @@ namespace WebshopClient.ProductLineServiceReference {
         private int AmountOnStockField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BrandField;
+        private int BrandIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CategoryField;
+        private int CategoryIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
@@ -151,6 +273,9 @@ namespace WebshopClient.ProductLineServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ProductIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] rowIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -176,27 +301,27 @@ namespace WebshopClient.ProductLineServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Brand {
+        public int BrandId {
             get {
-                return this.BrandField;
+                return this.BrandIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.BrandField, value) != true)) {
-                    this.BrandField = value;
-                    this.RaisePropertyChanged("Brand");
+                if ((this.BrandIdField.Equals(value) != true)) {
+                    this.BrandIdField = value;
+                    this.RaisePropertyChanged("BrandId");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Category {
+        public int CategoryId {
             get {
-                return this.CategoryField;
+                return this.CategoryIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
-                    this.CategoryField = value;
-                    this.RaisePropertyChanged("Category");
+                if ((this.CategoryIdField.Equals(value) != true)) {
+                    this.CategoryIdField = value;
+                    this.RaisePropertyChanged("CategoryId");
                 }
             }
         }
@@ -249,6 +374,19 @@ namespace WebshopClient.ProductLineServiceReference {
                 if ((this.ProductIdField.Equals(value) != true)) {
                     this.ProductIdField = value;
                     this.RaisePropertyChanged("ProductId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] rowId {
+            get {
+                return this.rowIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.rowIdField, value) != true)) {
+                    this.rowIdField = value;
+                    this.RaisePropertyChanged("rowId");
                 }
             }
         }
@@ -344,6 +482,18 @@ namespace WebshopClient.ProductLineServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProductLineServiceReference.IProductLineService")]
     public interface IProductLineService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductLineService/GetAllCategories", ReplyAction="http://tempuri.org/IProductLineService/GetAllCategoriesResponse")]
+        WebshopClient.ProductLineServiceReference.ServiceCategory[] GetAllCategories();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductLineService/GetAllCategories", ReplyAction="http://tempuri.org/IProductLineService/GetAllCategoriesResponse")]
+        System.Threading.Tasks.Task<WebshopClient.ProductLineServiceReference.ServiceCategory[]> GetAllCategoriesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductLineService/GetAllBrands", ReplyAction="http://tempuri.org/IProductLineService/GetAllBrandsResponse")]
+        WebshopClient.ProductLineServiceReference.ServiceBrand[] GetAllBrands();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductLineService/GetAllBrands", ReplyAction="http://tempuri.org/IProductLineService/GetAllBrandsResponse")]
+        System.Threading.Tasks.Task<WebshopClient.ProductLineServiceReference.ServiceBrand[]> GetAllBrandsAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductLineService/DeleteProductLine", ReplyAction="http://tempuri.org/IProductLineService/DeleteProductLineResponse")]
         void DeleteProductLine(int productLineId);
         
@@ -430,6 +580,22 @@ namespace WebshopClient.ProductLineServiceReference {
         
         public ProductLineServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public WebshopClient.ProductLineServiceReference.ServiceCategory[] GetAllCategories() {
+            return base.Channel.GetAllCategories();
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.ProductLineServiceReference.ServiceCategory[]> GetAllCategoriesAsync() {
+            return base.Channel.GetAllCategoriesAsync();
+        }
+        
+        public WebshopClient.ProductLineServiceReference.ServiceBrand[] GetAllBrands() {
+            return base.Channel.GetAllBrands();
+        }
+        
+        public System.Threading.Tasks.Task<WebshopClient.ProductLineServiceReference.ServiceBrand[]> GetAllBrandsAsync() {
+            return base.Channel.GetAllBrandsAsync();
         }
         
         public void DeleteProductLine(int productLineId) {

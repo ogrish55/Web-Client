@@ -149,8 +149,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Brand.cs" />
+    <Compile Include="Model\Category.cs" />
     <Compile Include="Model\CheckoutViewModel.cs" />
     <Compile Include="Model\Discount.cs" />
+    <Compile Include="Model\IndexViewModel.cs" />
     <Compile Include="Model\MockHttpSession.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\DeliveryDescription.cs" />
@@ -255,6 +258,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\ProductLineServiceReference\WebshopClient.ProductLineServiceReference.ServiceReview.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ProductLineServiceReference\WebshopClient.ProductLineServiceReference.ServiceBrand.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ProductLineServiceReference\WebshopClient.ProductLineServiceReference.ServiceCategory.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

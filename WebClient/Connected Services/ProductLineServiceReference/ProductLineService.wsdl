@@ -7,6 +7,18 @@
       <xsd:import schemaLocation="http://localhost:8081/Service?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Service.Model" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IProductLineService_GetAllCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategories" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_GetAllCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_GetAllBrands_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBrands" />
+  </wsdl:message>
+  <wsdl:message name="IProductLineService_GetAllBrands_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBrandsResponse" />
+  </wsdl:message>
   <wsdl:message name="IProductLineService_DeleteProductLine_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteProductLine" />
   </wsdl:message>
@@ -68,6 +80,14 @@
     <wsdl:part name="parameters" element="tns:InsertReviewResponse" />
   </wsdl:message>
   <wsdl:portType name="IProductLineService">
+    <wsdl:operation name="GetAllCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductLineService/GetAllCategories" message="tns:IProductLineService_GetAllCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductLineService/GetAllCategoriesResponse" message="tns:IProductLineService_GetAllCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBrands">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductLineService/GetAllBrands" message="tns:IProductLineService_GetAllBrands_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductLineService/GetAllBrandsResponse" message="tns:IProductLineService_GetAllBrands_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteProductLine">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductLineService/DeleteProductLine" message="tns:IProductLineService_DeleteProductLine_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProductLineService/DeleteProductLineResponse" message="tns:IProductLineService_DeleteProductLine_OutputMessage" />
@@ -111,6 +131,24 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IProductLineService" type="tns:IProductLineService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllCategories">
+      <soap:operation soapAction="http://tempuri.org/IProductLineService/GetAllCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBrands">
+      <soap:operation soapAction="http://tempuri.org/IProductLineService/GetAllBrands" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteProductLine">
       <soap:operation soapAction="http://tempuri.org/IProductLineService/DeleteProductLine" style="document" />
       <wsdl:input>
