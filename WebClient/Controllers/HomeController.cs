@@ -34,7 +34,8 @@ namespace WebClient.Controllers
         public ActionResult ProductsInPriceRange(int min, int max)
         {
             List<Product> productsToReturn = productService.GetAllProductsInPriceRange(min, max);
-            return View("Index", productsToReturn);
+            indexViewModel.Products = productsToReturn;
+            return View("Index", indexViewModel);
         }
 
         public ActionResult ProductsBasedOnBrand(int brandId)
