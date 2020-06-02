@@ -88,20 +88,6 @@ namespace WebshopClient.Utilities
             return customerToReturn;
         }
 
-        //public OrderServiceReference.ServiceCustomer ConvertToServiceCustomer(Customer webshopCustomer)
-        //{
-        //    OrderServiceReference.ServiceCustomer customerToReturn = new OrderServiceReference.ServiceCustomer();
-        //    customerToReturn.CustomerId = webshopCustomer.CustomerId;
-        //    customerToReturn.Name = webshopCustomer.Name;
-        //    customerToReturn.Address = webshopCustomer.Address;
-        //    customerToReturn.ZipCode = webshopCustomer.ZipCode;
-        //    customerToReturn.PhoneNo = webshopCustomer.PhoneNo;
-        //    customerToReturn.Password = webshopCustomer.Password;
-        //    customerToReturn.Email = webshopCustomer.Email;
-
-        //    return customerToReturn;
-        //}
-
         public CustomerServiceReference.ServiceCustomer ConvertToServiceCustomer(Customer webshopCustomer)
         {
             CustomerServiceReference.ServiceCustomer customerToReturn = new CustomerServiceReference.ServiceCustomer();
@@ -158,25 +144,5 @@ namespace WebshopClient.Utilities
             brandToReturn.BrandId = serviceBrand.BrandId;
             return brandToReturn;
         }
-
-        //Remember to uncomment
-
-        //public Review ConvertFromServiceReviewToClient(ServiceReview serviceReview)
-        //{
-        //    Review review = new Review();
-        //    review.Comment = serviceReview.Comment;
-        //    review.Rating = serviceReview.Rating;
-
-        //    return review;
-        //}
-
-        //public ServiceReview ConvertFromClientReviewToService(Review review)
-        //{
-        //    ServiceReview serviceReview = new ServiceReview();
-        //    serviceReview.Comment = review.Comment;
-        //    Service.Rating = review.Rating;
-
-        //    return serviceReview;
-        //}
     }
 }
