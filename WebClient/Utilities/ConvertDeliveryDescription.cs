@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using WebshopClient.OrderServiceReference;
+﻿using WebshopClient.OrderServiceReference;
 using WebshopClient.Model;
 
 namespace WebshopClient.Utilities

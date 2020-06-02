@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Services.Description;
-using WebshopClient.CustomerServiceReference;
-using WebshopClient.Model;
+﻿using WebshopClient.Model;
 using WebshopClient.OrderServiceReference;
 using WebshopClient.ProductLineServiceReference;
 

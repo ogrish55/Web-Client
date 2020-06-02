@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebshopClient.CustomerServiceReference;
-using WebshopClient.Model;
+﻿using WebshopClient.Model;
 using WebshopClient.OrderServiceReference;
-using WebshopClient.ProductLineServiceReference;
+
 
 namespace WebshopClient.Utilities
 {
